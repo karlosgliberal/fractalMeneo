@@ -1,8 +1,8 @@
 
-PImage[] myImageArray = new PImage[2];
+PImage[] myImageArray = new PImage[3];
+
 class KochLine {
 
-  
   // Two PVectors,
   // a is the "left" PVector and 
   // b is the "right PVector
@@ -10,20 +10,19 @@ class KochLine {
   PVector end;
 
   KochLine(PVector a, PVector b) {
-    
-    for (int i=0; i<myImageArray.length; i++){
-      myImageArray[i] = loadImage( "data/"+i+".png");
-    }
-    
+
+
     start = a.get();
     end = b.get();
   }
 
   void display() {
+       myImageArray[0] = loadImage( "data/0.png");
+    
     stroke(0);
     strokeWeight(2);
-    //line(start.x, start.y, end.x, end.y);
-    image(myImageArray[(int)random(2)], start.x-100, start.y-100);
+    image(myImageArray[0],start.x,start.y, 80, 80);
+    line(start.x, start.y, end.x, end.y);
   }
 
   PVector kochA() {
