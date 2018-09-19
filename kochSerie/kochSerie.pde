@@ -1,11 +1,3 @@
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// Koch Curve
-
-// Renders a simple fractal, the Koch snowflake
-// Each recursive level drawn in sequence
 
 ArrayList<KochLine> lines  ;   // A list to keep track of all the lines
 
