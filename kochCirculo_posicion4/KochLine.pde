@@ -5,16 +5,19 @@ class KochLine {
   // b is the "right PVector
   PVector start;
   PVector end;
+  int recursionLinea;
 
-  KochLine(PVector a, PVector b) {
+  KochLine(PVector a, PVector b, int recursion) {
+    recursionLinea = recursion;
     start = a.get();
     end = b.get();
   }
 
   void display(int lineNum) {
-
+    println(recursionLinea);
     pushMatrix();
     translate(start.x, start.y);
+    rotate(frameCount);
 
     //operaciones para buscar el ángulo
     PVector start2 = start.copy();

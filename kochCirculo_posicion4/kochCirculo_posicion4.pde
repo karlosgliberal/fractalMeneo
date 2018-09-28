@@ -5,7 +5,7 @@ PImage[] myImageArray = new PImage[2];
 
 PVector centro = new PVector(0, -1);
 PVector movida = new PVector(23, 45);
-
+int recursion = 0;
 
 void setup() {
   PVector movida2 = movida.copy();
@@ -27,9 +27,9 @@ void setup() {
   PVector c   = new PVector(dimension*cos(radians(90)), dimension*sin(radians(90))); 
 
   // Starting with additional lines
-  lines.add(new KochLine(a, b));
-  lines.add(new KochLine(b, c));
-  lines.add(new KochLine(c, a));
+  lines.add(new KochLine(a, b, recursion));
+  lines.add(new KochLine(b, c, recursion));
+  lines.add(new KochLine(c, a, recursion));
 
   pushStyle(); 
 
@@ -45,7 +45,7 @@ void setup() {
 
 
   for (int i = 0; i <3; i++) {
-    generate();
+    generate(i);
   }
 
   for (int i=0; i<myImageArray.length; i++) {
@@ -56,6 +56,7 @@ void setup() {
 void draw() {
   translate(width/2, height/2);//esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   //  background(255);
+  background(252, 13, 17);
 
 /*
   for (KochLine l : lines) {  
@@ -68,10 +69,10 @@ void draw() {
   }
 
 
-  noLoop();
+  //noLoop();
 }
 
-void generate() {
+void generate(int recursion) {
   ArrayList next = new ArrayList<KochLine>();    // Create emtpy list
   for (KochLine l : lines) {
     // Calculate 5 koch PVectors (done for us by the line object)
@@ -81,10 +82,10 @@ void generate() {
     PVector d = l.kochD();
     PVector e = l.kochE();
     // Make line segments between all the PVectors and add them
-    next.add(new KochLine(a, b));
-    next.add(new KochLine(b, c));
-    next.add(new KochLine(c, d));
-    next.add(new KochLine(d, e));
+    next.add(new KochLine(a, b, recursion));
+    next.add(new KochLine(b, c, recursion));
+    next.add(new KochLine(c, d, recursion));
+    next.add(new KochLine(d, e, recursion));
   }
   lines = next;
 }
