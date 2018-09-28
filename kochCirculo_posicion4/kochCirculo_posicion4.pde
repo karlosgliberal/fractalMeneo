@@ -1,11 +1,16 @@
 
 ArrayList<KochLine> lines  ;   // A list to keep track of all the lines
 
-PImage[] myImageArray = new PImage[6];
+PImage[] myImageArray = new PImage[2];
 
 PVector centro = new PVector(0, -1);
+PVector movida = new PVector(23, 45);
+
 
 void setup() {
+  PVector movida2 = movida.copy();
+  println(movida2.x);
+  
 //  size(1000, 1000);
   fullScreen();
   
@@ -38,7 +43,7 @@ void setup() {
    point(c.x, c.y);
    */
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 1; i++) {
     generate();
   }
 

@@ -21,6 +21,7 @@ class KochLine {
     start2.normalize();
     PVector centro2 = centro.copy();
     centro2.sub(start2);
+    
     float ang=PVector.angleBetween(centro, start2);
     float angXtra;
 
