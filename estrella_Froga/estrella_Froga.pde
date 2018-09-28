@@ -14,11 +14,11 @@ float seedRD;
 
 int angulo;
 
-Punta[] puntas = new Punta[12]; //Cuántas puntas 
+Punta[] puntas = new Punta[4]; //Cuántas puntas 
 
-PImage[] myImageArray = new PImage[6]; //Cuántas imágenes dentro de una punta
+PImage[] myImageArray = new PImage[4]; //Cuántas imágenes dentro de una punta
 
-int numPuntas=6;
+int numPuntas=4;
 
 void setup() {  
   size(1080, 1080);
