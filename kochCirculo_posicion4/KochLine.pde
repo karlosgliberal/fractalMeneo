@@ -26,15 +26,16 @@ class KochLine {
 
     if (centro2.x > 0) {
       angXtra=-ang*2;
+      
     } else {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    //tint(255, 150); //esto para transparentar las imágenes
+    tint(255, 150); //esto para transparentar las imágenes
     image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
     popMatrix();
 
-    stroke(0, 30);
+    stroke(0, 255);
     strokeWeight(3);
     line(start.x, start.y, end.x, end.y);
   }
