@@ -6,7 +6,6 @@ PImage[] myImageArray = new PImage[2];
 PVector centro = new PVector(0, -1);
 PVector movida = new PVector(23, 45);
 
-
 void setup() {
   PVector movida2 = movida.copy();
   println(movida2.x);
