@@ -5,43 +5,68 @@ class KochLine {
   // b is the "right PVector
   PVector start;
   PVector end;
-  int recursionLinea;
 
-  KochLine(PVector a, PVector b, int recursion) {
-    recursionLinea = recursion;
+  KochLine(PVector a, PVector b) {
     start = a.get();
     end = b.get();
   }
 
   void display(int lineNum) {
+
     pushMatrix();
     translate(start.x, start.y);
-    rotate(frameCount);
 
     //operaciones para buscar el ángulo
     PVector start2 = start.copy();
     start2.normalize();
-    
     PVector centro2 = centro.copy();
     centro2.sub(start2);
-    
+
     float ang=PVector.angleBetween(centro, start2);
     float angXtra;
 
     if (centro2.x > 0) {
       angXtra=-ang*2;
-      
     } else {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    tint(255, 150); //esto para transparentar las imágenes
+
+    //experimentos de falsear el nivel de recursión
+    noStroke();
+    //con estos marco los principales reales
+    if (lineNum % 16 == 0) {
+      scale(1.5);
+    }
+    //con estos los principales de raya :P
+    if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
+      scale(1.5);
+    }
+    if (lineNum % 8 == 0 && lineNum % 16 !=0) {
+      scale(1);
+    }
+    if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
+      scale(0.4);
+    }
+    if (lineNum % 2 == 1) {
+      if (lineNum % 16 <5 || lineNum % 16 >11) {
+        scale(0.75);
+      }
+      if (lineNum % 16 >4 && lineNum % 16 <12) {
+        scale(0.75);
+      }
+    }
+    //hasta aquí
+
+//    tint(255, 150); //esto para transparentar las imágenes
     image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
+
     popMatrix();
 
-    stroke(0, 255, lineNum*10);
+
+    stroke(0, 255);
     strokeWeight(3);
-    line(start.x, start.y, end.x, end.y);
+  //  line(start.x, start.y, end.x, end.y);
   }
 
   PVector kochA() {
