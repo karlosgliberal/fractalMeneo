@@ -14,7 +14,6 @@ class KochLine {
   }
 
   void display(int lineNum) {
-    println(recursionLinea);
     pushMatrix();
     translate(start.x, start.y);
     rotate(frameCount);
@@ -22,6 +21,7 @@ class KochLine {
     //operaciones para buscar el ángulo
     PVector start2 = start.copy();
     start2.normalize();
+    
     PVector centro2 = centro.copy();
     centro2.sub(start2);
     
@@ -39,7 +39,7 @@ class KochLine {
     image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
     popMatrix();
 
-    stroke(0, 255);
+    stroke(0, 255, lineNum*10);
     strokeWeight(3);
     line(start.x, start.y, end.x, end.y);
   }
