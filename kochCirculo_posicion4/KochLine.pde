@@ -31,49 +31,42 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    tint(255, 150); //esto para transparentar las imágenes
-    //image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
 
     //experimentos de falsear el nivel de recursión
     noStroke();
-
     //con estos marco los principales reales
     if (lineNum % 16 == 0) {
-      fill(255, 0, 0, 100);
-      ellipse(0, 0, 40, 40);
+      scale(1.5);
     }
     //con estos los principales de raya :P
     if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
-      fill(255, 0, 0, 100);
-      ellipse(0, 0, 30, 30);
+      scale(1.5);
     }
     if (lineNum % 8 == 0 && lineNum % 16 !=0) {
-      fill(0, 255, 0, 100);
-      ellipse(0, 0, 25, 25);
+      scale(1);
     }
     if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
-      fill(0, 0, 255, 100);
-      ellipse(0, 0, 15, 15);
+      scale(0.4);
     }
     if (lineNum % 2 == 1) {
       if (lineNum % 16 <5 || lineNum % 16 >11) {
-        fill(0, 255, 255, 100);
-        ellipse(0, 0, 20, 20);
+        scale(0.75);
       }
       if (lineNum % 16 >4 && lineNum % 16 <12) {
-        fill(255, 0, 255, 100);
-        ellipse(0, 0, 20, 20);
+        scale(0.75);
       }
     }
-
     //hasta aquí
-    popMatrix();
 
+//    tint(255, 150); //esto para transparentar las imágenes
+    image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
+
+    popMatrix();
 
 
     stroke(0, 255);
     strokeWeight(3);
-    line(start.x, start.y, end.x, end.y);
+  //  line(start.x, start.y, end.x, end.y);
   }
 
   PVector kochA() {
