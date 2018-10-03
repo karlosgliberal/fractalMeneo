@@ -8,6 +8,7 @@ PVector movida = new PVector(23, 45);
 
 float movi=100;
 float moviR=1;
+float velocidad=1;
 
 void setup() {
   PVector movida2 = movida.copy();
@@ -71,16 +72,17 @@ void draw() {
     l.display(i);
   }
 
-  //movi=movi+random(-2, 2);
-  
-  if (frameCount % 10 == 0) {
-   moviR=random(-1,1);
-   }
-   movi=movi+10*moviR;
-  if (movi<-100){
-    moviR=1;
+  if (frameCount % 10 == 0) {//cada X frames randomiza la dirección y la velocidad del movimiento (hacia afuera o hacia adentro)
+    moviR=1-2*int(random(-1, 2));
+    velocidad=random(0,2);
   }
   
+  movi+=5*moviR*velocidad;
+
+    if (movi<-200 || movi>700){//si se va a pirar mucho de la pantalla cambiamos la dirección // esto provoca skratches :P
+   moviR=-moviR;
+   }
+   
   println(frameRate);
 
   //noLoop();
