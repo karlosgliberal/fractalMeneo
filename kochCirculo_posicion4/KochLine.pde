@@ -30,7 +30,7 @@ class KochLine {
     } else {
       angXtra=0;
     } 
-    rotate(ang+angXtra);
+    rotate(ang+angXtra+radians(movi));
 
     //experimentos de falsear el nivel de recursión
     noStroke();

@@ -10,7 +10,7 @@ float movi=0;
 
 void setup() {
   PVector movida2 = movida.copy();
-  println(movida2.x);
+  //println(movida2.x);
 
   //  size(1000, 1000);
   fullScreen();
@@ -45,7 +45,7 @@ void setup() {
    */
 
 
-  for (int i = 0; i <3; i++) {
+  for (int i = 0; i <2; i++) {
     generate();
   }
 
@@ -73,7 +73,9 @@ void draw() {
   //movi=movi+random(-2, 2);
   movi++;
 
-  //oLoop();
+  println(frameRate);
+
+  //noLoop();
 }
 
 void generate() {
