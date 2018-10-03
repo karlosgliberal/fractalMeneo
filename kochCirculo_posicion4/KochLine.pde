@@ -59,11 +59,11 @@ class KochLine {
     //hasta aquí
 
     pushMatrix();
-    translate(movi, movi);//esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
+    translate(0, movi);//esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
     //en las coordenadas de la imagen, si ponemos 2movi" también en el X conseguimos una rotación en espiral, mola
     //si ponemos solo en el X es más como un baliecito, que combinado 
     
-    rotate(radians(movi*random(-1.1)));//esto si en vez de estar aquí, está por encima del translate anterior, gira con radio "movie" y también es interesante
+    rotate(radians(movi));//esto si en vez de estar aquí, está por encima del translate anterior, gira con radio "movie" y también es interesante
 
     //  tint(255, 180); //esto para transparentar las imágenes
     imageMode(CENTER); //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
