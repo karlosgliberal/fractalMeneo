@@ -58,15 +58,17 @@ class KochLine {
     }
     //hasta aquí
 
-//    tint(255, 150); //esto para transparentar las imágenes
-    image(myImageArray[lineNum % myImageArray.length], -myImageArray[lineNum % myImageArray.length].width/2, -myImageArray[lineNum % myImageArray.length].height/2); //le he quitado las medidas y coge las propias del archivo
+
+    tint(255, 180); //esto para transparentar las imágenes
+    imageMode(CENTER); //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
+    image(myImageArray[lineNum % myImageArray.length], movi*cos(ang+angXtra), movi*sin(ang+angXtra)); //le he quitado las medidas y coge las propias del archivo
 
     popMatrix();
 
 
     stroke(0, 255);
     strokeWeight(3);
-  //  line(start.x, start.y, end.x, end.y);
+    //  line(start.x, start.y, end.x, end.y);
   }
 
   PVector kochA() {

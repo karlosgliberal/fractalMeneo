@@ -1,10 +1,12 @@
 
 ArrayList<KochLine> lines  ;   // A list to keep track of all the lines
 
-PImage[] myImageArray = new PImage[1];
+PImage[] myImageArray = new PImage[5];
 
 PVector centro = new PVector(0, -1);
 PVector movida = new PVector(23, 45);
+
+float movi=0;
 
 void setup() {
   PVector movida2 = movida.copy();
@@ -12,11 +14,11 @@ void setup() {
 
   //  size(1000, 1000);
   fullScreen();
-  
+
   background(255, 196, 4); //horia
-  background(252, 13, 17); //gorria
-  background(253, 81, 191); //larrosa
-  background(255);
+  //background(252, 13, 17); //gorria
+  //background(253, 81, 191); //larrosa
+  //background(255);
 
   int dimension = height/2-height/20;
 
@@ -55,6 +57,8 @@ void setup() {
 void draw() {
   translate(width/2, height/2);//esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   //  background(255);
+  background(255, 196, 4); //horia
+
 
   /*
   for (KochLine l : lines) {  
@@ -66,8 +70,10 @@ void draw() {
     l.display(i);
   }
 
+  //movi=movi+random(-2, 2);
+  movi++;
 
-  noLoop();
+  //oLoop();
 }
 
 void generate() {
