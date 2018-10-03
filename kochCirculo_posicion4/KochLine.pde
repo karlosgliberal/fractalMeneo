@@ -30,10 +30,10 @@ class KochLine {
     } else {
       angXtra=0;
     } 
-    rotate(ang+angXtra+radians(movi));
+    rotate(ang+angXtra);
 
     //experimentos de falsear el nivel de recursión
-    noStroke();
+
     //con estos marco los principales reales
     if (lineNum % 16 == 0) {
       scale(1.5);
@@ -58,13 +58,11 @@ class KochLine {
     }
     //hasta aquí
 
-
-    tint(255, 180); //esto para transparentar las imágenes
+  //  tint(255, 180); //esto para transparentar las imágenes
     imageMode(CENTER); //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
-    image(myImageArray[lineNum % myImageArray.length], movi*cos(ang+angXtra), movi*sin(ang+angXtra)); //le he quitado las medidas y coge las propias del archivo
+    image(myImageArray[lineNum % myImageArray.length], 0, movi); //le he quitado las medidas y coge las propias del archivo
 
     popMatrix();
-
 
     stroke(0, 255);
     strokeWeight(3);

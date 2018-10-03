@@ -6,7 +6,8 @@ PImage[] myImageArray = new PImage[5];
 PVector centro = new PVector(0, -1);
 PVector movida = new PVector(23, 45);
 
-float movi=0;
+float movi=100;
+float moviR=1;
 
 void setup() {
   PVector movida2 = movida.copy();
@@ -45,7 +46,7 @@ void setup() {
    */
 
 
-  for (int i = 0; i <2; i++) {
+  for (int i = 0; i <3; i++) {
     generate();
   }
 
@@ -71,8 +72,15 @@ void draw() {
   }
 
   //movi=movi+random(-2, 2);
-  movi++;
-
+  
+  if (frameCount % 10 == 0) {
+   moviR=random(-1,1);
+   }
+   movi=movi+10*moviR;
+  if (movi<-100){
+    moviR=1;
+  }
+  
   println(frameRate);
 
   //noLoop();
