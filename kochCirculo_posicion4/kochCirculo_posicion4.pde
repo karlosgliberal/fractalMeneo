@@ -10,6 +10,8 @@ float movi=100;
 float moviR=1;
 float velocidad=1;
 
+float rotarGeneral=0;
+
 void setup() {
   PVector movida2 = movida.copy();
   //println(movida2.x);
@@ -47,7 +49,7 @@ void setup() {
    */
 
 
-  for (int i = 0; i <3; i++) {
+  for (int i = 0; i <2; i++) {
     generate();
   }
 
@@ -61,6 +63,8 @@ void draw() {
   //  background(255);
   background(255, 196, 4); //horia
 
+  rotate(radians(rotarGeneral));
+  rotarGeneral += 0.5;
 
   /*
   for (KochLine l : lines) {  
@@ -72,17 +76,17 @@ void draw() {
     l.display(i);
   }
 
-  if (frameCount % 10 == 0) {//cada X frames randomiza la dirección y la velocidad del movimiento (hacia afuera o hacia adentro)
+  if (frameCount % 30 == 0) {//cada X frames randomiza la dirección y la velocidad del movimiento (hacia afuera o hacia adentro)
     moviR=1-2*int(random(-1, 2));
-    velocidad=random(0,2);
+    //velocidad=random(0,2);
   }
-  
+
   movi+=5*moviR*velocidad;
 
-    if (movi<-200 || movi>700){//si se va a pirar mucho de la pantalla cambiamos la dirección // esto provoca skratches :P
-   moviR=-moviR;
-   }
-   
+  if (movi<-200 || movi>700) {//si se va a pirar mucho de la pantalla cambiamos la dirección // esto provoca skratches :P
+    moviR=-moviR;
+  }
+
   println(frameRate);
 
   //noLoop();
