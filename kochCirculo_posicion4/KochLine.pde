@@ -1,10 +1,41 @@
 class KochLine {
   PVector start;
   PVector end;
+  int valor;
 
   KochLine(PVector a, PVector b) {
     start = a.get();
     end = b.get();
+    valor = 0;
+  }
+
+  void addValor(int lineNum) {
+
+    if (lineNum % 16 == 0) {
+
+      valor =4;
+    }
+    //con estos los principales de raya :P
+    if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
+
+      valor =4;
+    }
+    if (lineNum % 8 == 0 && lineNum % 16 !=0) {
+
+      valor =3;
+    }
+    if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
+      valor =1;
+    }
+    if (lineNum % 2 == 1) {
+      if (lineNum % 16 <5 || lineNum % 16 >11) {
+        valor =2;
+      }
+      if (lineNum % 16 >4 && lineNum % 16 <12) {
+
+        valor =2;
+      }
+    }
   }
 
   void display(int lineNum) {
@@ -27,8 +58,8 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    
-    
+
+
     if (lineNum % 16 == 0) {
       scale(1.5);
     }
@@ -53,11 +84,11 @@ class KochLine {
     //hasta aquí
 
     pushMatrix();
-    translate(0, movi);//esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
+    //translate(0, movi);//esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
     //en las coordenadas de la imagen, si ponemos 2movi" también en el X conseguimos una rotación en espiral, mola
     //si ponemos solo en el X es más como un baliecito, que combinado 
-    
-    rotate(radians(movi));//esto si en vez de estar aquí, está por encima del translate anterior, gira con radio "movie" y también es interesante
+
+    //rotate(radians(movi));//esto si en vez de estar aquí, está por encima del translate anterior, gira con radio "movie" y también es interesante
 
     //  tint(255, 180); //esto para transparentar las imágenes
     imageMode(CENTER); //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
@@ -68,7 +99,9 @@ class KochLine {
 
     stroke(0, 255);
     strokeWeight(3);
-    //  line(start.x, start.y, end.x, end.y);
+    line(start.x, start.y, end.x, end.y);
+    textSize(24);
+    text(valor, start.x, end.y);
   }
 
   PVector kochA() {

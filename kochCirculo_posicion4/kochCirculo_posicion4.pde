@@ -15,7 +15,7 @@ float rotarGeneral=0;
 
 ControlP5 cp5;
 public int myColor = color(0, 0, 0);
-public int sliderValue = 5;
+public int sliderValue = 0;
 
 void setup() {
   fullScreen();
@@ -47,14 +47,14 @@ void setup() {
   cp5 = new ControlP5(this);
   cp5.addSlider("slider")
     .setRange(0, 20)
-    .setValue(10)
+    .setValue(0)
     .setPosition(20, 100)
     .setSize(20, 100)
     ;
 }
 
 void draw() {
-  
+
 
   pushMatrix();
   translate(width/2, height/2);//esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
@@ -102,21 +102,27 @@ void generate() {
     next.add(new KochLine(c, d));
     next.add(new KochLine(d, e));
   }
+
   lines = next;
+
+
+  for (int i = 0; i <lines.size(); i++) {
+    KochLine l = lines.get(i);
+    l.addValor(i);
+  }
 }
 
 void keyPressed() {
   // default properties load/save key combinations are 
   // alt+shift+l to load properties
   // alt+shift+s to save properties
-  if(key=='1') {
+  if (key=='1') {
     cp5.saveProperties(("valoresUi.json"));
-  } else if(key=='2') {
+  } else if (key=='2') {
     cp5.loadProperties(("valoresUi.json"));
-  } else if(key == '3'){
+  } else if (key == '3') {
     cp5.hide();
-  } else if(key == '4'){
+  } else if (key == '4') {
     cp5.show();
   }
-  
 }
