@@ -1,8 +1,4 @@
 class KochLine {
-
-  // Two PVectors,
-  // a is the "left" PVector and 
-  // b is the "right PVector
   PVector start;
   PVector end;
 
@@ -31,10 +27,8 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-
-    //experimentos de falsear el nivel de recursión
-
-    //con estos marco los principales reales
+    
+    
     if (lineNum % 16 == 0) {
       scale(1.5);
     }

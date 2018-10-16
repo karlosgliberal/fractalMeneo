@@ -1,7 +1,7 @@
+import controlP5.*;
 
 ArrayList<KochLine> lines  ;   // A list to keep track of all the lines
-
-PImage[] myImageArray = new PImage[5];
+PImage[] myImageArray = new PImage[6];
 
 PVector centro = new PVector(0, -1);
 PVector movida = new PVector(23, 45);
@@ -9,20 +9,19 @@ PVector movida = new PVector(23, 45);
 float movi=100;
 float moviR=1;
 float velocidad=1;
-
 float rotarGeneral=0;
 
+
+
+ControlP5 cp5;
+public int myColor = color(0, 0, 0);
+public int sliderValue = 5;
+
 void setup() {
-  PVector movida2 = movida.copy();
-  //println(movida2.x);
-
-  //  size(1000, 1000);
   fullScreen();
-
   background(255, 196, 4); //horia
-  //background(252, 13, 17); //gorria
-  //background(253, 81, 191); //larrosa
-  //background(255);
+
+
 
   int dimension = height/2-height/20;
 
@@ -36,18 +35,6 @@ void setup() {
   lines.add(new KochLine(b, c));
   lines.add(new KochLine(c, a));
 
-  pushStyle(); 
-
-  //puntos de refecencia de la forma total, para construirla y centrala bien
-  /*  strokeWeight(10);
-   stroke(0, 0, 255);
-   point(centro.x, centro.y);
-   stroke(255, 0, 0);
-   point(a.x, a.y);
-   point(b.x, b.y);
-   point(c.x, c.y);
-   */
-
 
   for (int i = 0; i <2; i++) {
     generate();
@@ -56,20 +43,23 @@ void setup() {
   for (int i=0; i<myImageArray.length; i++) {
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png"); // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
   }
+
+  cp5 = new ControlP5(this);
+  cp5.addSlider("slider")
+    .setRange(0, 20)
+    .setValue(10)
+    .setPosition(20, 100)
+    .setSize(20, 100)
+    ;
 }
 
 void draw() {
+  
+
+  pushMatrix();
   translate(width/2, height/2);//esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
-  //  background(255);
   background(255, 196, 4); //horia
-
   rotate(radians(rotarGeneral));
-  rotarGeneral += 0.5;
-
-  /*
-  for (KochLine l : lines) {  
-   l.display();
-   }*/
 
   for (int i= 0; i < lines.size(); i++) {
     KochLine l = lines.get(i);
@@ -86,11 +76,16 @@ void draw() {
   if (movi<-200 || movi>700) {//si se va a pirar mucho de la pantalla cambiamos la dirección // esto provoca skratches :P
     moviR=-moviR;
   }
-
-  println(frameRate);
-
-  //noLoop();
+  popMatrix();
+  rotarGeneral += sliderValue;
 }
+
+public void slider(int theColor) {
+  sliderValue = theColor;
+  myColor = theColor;
+  println("a slider event. setting background to "+theColor);
+}
+
 
 void generate() {
   ArrayList next = new ArrayList<KochLine>();    // Create emtpy list
@@ -108,4 +103,20 @@ void generate() {
     next.add(new KochLine(d, e));
   }
   lines = next;
+}
+
+void keyPressed() {
+  // default properties load/save key combinations are 
+  // alt+shift+l to load properties
+  // alt+shift+s to save properties
+  if(key=='1') {
+    cp5.saveProperties(("valoresUi.json"));
+  } else if(key=='2') {
+    cp5.loadProperties(("valoresUi.json"));
+  } else if(key == '3'){
+    cp5.hide();
+  } else if(key == '4'){
+    cp5.show();
+  }
+  
 }
