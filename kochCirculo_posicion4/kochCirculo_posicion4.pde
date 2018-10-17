@@ -105,7 +105,7 @@ void generate() {
 
   lines = next;
 
-
+  println(lines.size());
   for (int i = 0; i <lines.size(); i++) {
     KochLine l = lines.get(i);
     l.addValor(i);
