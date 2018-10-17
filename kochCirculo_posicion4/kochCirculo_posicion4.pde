@@ -11,7 +11,8 @@ float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
 int recursionLevel = 2;
-
+int[] recursionLevelArray = new int[3];
+;
 
 
 ControlP5 cp5;
@@ -41,22 +42,47 @@ void setup() {
 
   int numLines = lines.size();
   int division = numLines;
-  
-  println(division);
 
-  for (int i = 0; i < recursionLevel; i++) {
-    for (int j= 0; j < division; j++) {
-      KochLine l = lines.get(j);
-      if(j % 12 == 0){
-        l.addValor(0);
-        
-      } else {
-        l.addValor(2);
-              
-      }  
+  //for (int i = 0; i < recursionLevel; i++) {
+  //  recursionLevelArray[i] = division;
+  //  division = division / 4;
+  //}
+  //recursionLevelArray[recursionLevelArray.length-1] = 3;
+
+  //int count = 0;
+
+  //for (int i = 0; i < numLines; i++) {
+  //  int ii = 0;
+  //  KochLine l = lines.get(i);
+  //  l.addValor(recursionLevelArray[2]);    
+  //  do {
+  //    if(i % recursionLevelArray[ii] == 0 ){
+  //      System.out.println(recursionLevelArray[ii]);
+  //      l.addValor(recursionLevelArray[2]);  
+  //    }
+  //    ii++;
+  //  } while (ii<3);
+  //}
+
+
+
+
+
+
+    for (int i = 0; i < recursionLevel; i++) {
+      for (int j= 0; j < numLines; j++) {
+        KochLine l = lines.get(j);
+        if(j % 12 == 0){
+          l.addValor(1);
+        } else if(j % 3 == 0){
+          l.addValor(2);
+        } else {
+          l.addValor(3);      
+        }  
+      }
+      division = division / 4;
+      println(division);
     }
-    division = division / 4;
-  }
 
 
 
