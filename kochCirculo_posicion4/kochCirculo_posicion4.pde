@@ -69,20 +69,20 @@ void setup() {
 
 
 
-    for (int i = 0; i < recursionLevel; i++) {
-      for (int j= 0; j < numLines; j++) {
-        KochLine l = lines.get(j);
-        if(j % 12 == 0){
-          l.addValor(1);
-        } else if(j % 3 == 0){
-          l.addValor(2);
-        } else {
-          l.addValor(3);      
-        }  
+  for (int i = 0; i < recursionLevel; i++) {
+    for (int j= 0; j < numLines; j++) {
+      KochLine l = lines.get(j);
+      if (j % 12 == 0) {
+        l.addValor(1);
+      } else if (j % 3 == 0) {
+        l.addValor(2);
+      } else {
+        l.addValor(3);
       }
-      division = division / 4;
-      println(division);
     }
+    division = division / 4;
+    println(division);
+  }
 
 
 
