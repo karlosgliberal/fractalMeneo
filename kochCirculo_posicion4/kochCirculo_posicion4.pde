@@ -10,6 +10,7 @@ float movi=100;
 float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
+int recursionLevel = 2;
 
 
 
@@ -21,11 +22,9 @@ void setup() {
   fullScreen();
   background(255, 196, 4); //horia
 
-
-
   int dimension = height/2-height/20;
-
   lines = new ArrayList<KochLine>();
+
   PVector a   = new PVector(dimension*cos(radians(210)), dimension*sin(radians(210)));
   PVector b   = new PVector(dimension*cos(radians(-30)), dimension*sin(radians(-30)));
   PVector c   = new PVector(dimension*cos(radians(90)), dimension*sin(radians(90))); 
@@ -36,9 +35,30 @@ void setup() {
   lines.add(new KochLine(c, a));
 
 
-  for (int i = 0; i <2; i++) {
-    generate();
+  for (int i = 0; i < recursionLevel; i++) {
+    generate(i);
   }
+
+  int numLines = lines.size();
+  int division = numLines;
+  
+  println(division);
+
+  for (int i = 0; i < recursionLevel; i++) {
+    for (int j= 0; j < division; j++) {
+      KochLine l = lines.get(j);
+      if(j % 12 == 0){
+        l.addValor(0);
+        
+      } else {
+        l.addValor(2);
+              
+      }  
+    }
+    division = division / 4;
+  }
+
+
 
   for (int i=0; i<myImageArray.length; i++) {
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png"); // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
@@ -83,11 +103,11 @@ void draw() {
 public void slider(int theColor) {
   sliderValue = theColor;
   myColor = theColor;
-  println("a slider event. setting background to "+theColor);
+  //println("a slider event. setting background to "+theColor);
 }
 
 
-void generate() {
+void generate(int level) {
   ArrayList next = new ArrayList<KochLine>();    // Create emtpy list
   for (KochLine l : lines) {
     // Calculate 5 koch PVectors (done for us by the line object)
@@ -104,13 +124,23 @@ void generate() {
   }
 
   lines = next;
-
-  println(lines.size());
-  for (int i = 0; i <lines.size(); i++) {
-    KochLine l = lines.get(i);
-    l.addValor(i);
-  }
+  //println(lines.size()); 
+  //for (int i = 0; i <lines.size(); i++) {
+  //  println(level);   
+  //  KochLine l = lines.get(i);
+  //  l.addValor(i);
+  //}
 }
+
+
+//float drawCircle(int radius) {
+
+//  if (radius > 0) {
+//    radius +=0;
+//    println(radius);
+//    return radius;
+//  }
+//}
 
 void keyPressed() {
   // default properties load/save key combinations are 
@@ -124,5 +154,14 @@ void keyPressed() {
     cp5.hide();
   } else if (key == '4') {
     cp5.show();
+  }
+}
+
+
+void controlRecursion(int numLines, int recursionLevel) {
+  int numFrakLines = 4;
+
+  for (int i = 0; i < recursionLevel; i++) {
+    //println();
   }
 }

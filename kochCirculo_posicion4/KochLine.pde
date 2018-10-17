@@ -9,34 +9,38 @@ class KochLine {
     valor = 0;
   }
 
-  void addValor(int lineNum) {
-
-    if (lineNum % 16 == 0) {
-
-      valor =4;
-    }
-    //con estos los principales de raya :P
-    if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
-
-      valor =4;
-    }
-    if (lineNum % 8 == 0 && lineNum % 16 !=0) {
-
-      valor =3;
-    }
-    if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
-      valor =1;
-    }
-    if (lineNum % 2 == 1) {
-      if (lineNum % 16 <5 || lineNum % 16 >11) {
-        valor =2;
-      }
-      if (lineNum % 16 >4 && lineNum % 16 <12) {
-
-        valor =2;
-      }
-    }
+  void addValor(int lineNume){
+    valor = lineNume;
   }
+
+  //void addValor(int lineNum) {
+
+  //  if (lineNum % 16 == 0) {
+
+  //    valor =4;
+  //  }
+  //  //con estos los principales de raya :P
+  //  if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
+
+  //    valor =4;
+  //  }
+  //  if (lineNum % 8 == 0 && lineNum % 16 !=0) {
+
+  //    valor =3;
+  //  }
+  //  if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
+  //    valor =1;
+  //  }
+  //  if (lineNum % 2 == 1) {
+  //    if (lineNum % 16 <5 || lineNum % 16 >11) {
+  //      valor =2;
+  //    }
+  //    if (lineNum % 16 >4 && lineNum % 16 <12) {
+
+  //      valor =2;
+  //    }
+  //  }
+  //}
 
   void display(int lineNum) {
 
