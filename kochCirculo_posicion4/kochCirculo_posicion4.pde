@@ -11,8 +11,9 @@ float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
 int recursionLevel = 2;
-int[] recursionLevelArray = new int[3];
-;
+IntList recursionLevelArray;
+//int[] recursionLevelArray = new int[recursionLevel+1];
+
 
 
 ControlP5 cp5;
@@ -25,6 +26,7 @@ void setup() {
 
   int dimension = height/2-height/20;
   lines = new ArrayList<KochLine>();
+  recursionLevelArray = new IntList();
 
   PVector a   = new PVector(dimension*cos(radians(210)), dimension*sin(radians(210)));
   PVector b   = new PVector(dimension*cos(radians(-30)), dimension*sin(radians(-30)));
@@ -43,11 +45,32 @@ void setup() {
   int numLines = lines.size();
   int division = numLines;
 
-  //for (int i = 0; i < recursionLevel; i++) {
-  //  recursionLevelArray[i] = division;
-  //  division = division / 4;
-  //}
-  //recursionLevelArray[recursionLevelArray.length-1] = 3;
+
+  for (int i = 0; i < recursionLevel; i++) {
+    recursionLevelArray.append(division);
+    division = division / 4;
+  }
+  recursionLevelArray.append(3);
+  recursionLevelArray.reverse();
+
+  for (int i = 0; i <= recursionLevel; i++) {
+    int resto = recursionLevelArray.get(i) / 4;
+    println(resto);
+    for (int j = 0; j < numLines; j++) {
+      KochLine l = lines.get(j);
+      if (resto == 0) {
+        l.addValor(recursionLevelArray.get(i));
+      } else {
+        if (j % resto == 0) {
+          l.addValor(recursionLevelArray.get(i));
+        }
+      }
+    }
+  }
+
+
+
+
 
   //int count = 0;
 
@@ -69,20 +92,20 @@ void setup() {
 
 
 
-  for (int i = 0; i < recursionLevel; i++) {
-    for (int j= 0; j < numLines; j++) {
-      KochLine l = lines.get(j);
-      if (j % 12 == 0) {
-        l.addValor(1);
-      } else if (j % 3 == 0) {
-        l.addValor(2);
-      } else {
-        l.addValor(3);
-      }
-    }
-    division = division / 4;
-    println(division);
-  }
+  //for (int i = 0; i < recursionLevel; i++) {
+  //  for (int j= 0; j < numLines; j++) {
+  //    KochLine l = lines.get(j);
+  //    if (j % 12 == 0) {
+  //      l.addValor(1);
+  //    } else if (j % 3 == 0) {
+  //      l.addValor(2);
+  //    } else {
+  //      l.addValor(3);
+  //    }
+  //  }
+  //  division = division / 4;
+  //  println(division);
+  //}
 
 
 
