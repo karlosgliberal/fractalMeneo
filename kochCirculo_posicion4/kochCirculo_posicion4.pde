@@ -12,9 +12,6 @@ float velocidad=1;
 float rotarGeneral=0;
 int recursionLevel = 2;
 IntList recursionLevelArray;
-//int[] recursionLevelArray = new int[recursionLevel+1];
-
-
 
 ControlP5 cp5;
 public int myColor = color(0, 0, 0);
@@ -23,7 +20,6 @@ public int sliderValue = 0;
 void setup() {
   fullScreen();
   background(255, 196, 4); //horia
-
   int dimension = height/2-height/20;
   lines = new ArrayList<KochLine>();
   recursionLevelArray = new IntList();
@@ -37,14 +33,12 @@ void setup() {
   lines.add(new KochLine(b, c));
   lines.add(new KochLine(c, a));
 
-
   for (int i = 0; i < recursionLevel; i++) {
     generate(i);
   }
 
   int numLines = lines.size();
   int division = numLines;
-
 
   for (int i = 0; i < recursionLevel; i++) {
     recursionLevelArray.append(division);
@@ -59,55 +53,14 @@ void setup() {
     for (int j = 0; j < numLines; j++) {
       KochLine l = lines.get(j);
       if (resto == 0) {
-        l.addValor(recursionLevelArray.get(i));
+        l.addValor(1);
       } else {
         if (j % resto == 0) {
-          l.addValor(recursionLevelArray.get(i));
+          l.addValor(i+1);
         }
       }
     }
   }
-
-
-
-
-
-  //int count = 0;
-
-  //for (int i = 0; i < numLines; i++) {
-  //  int ii = 0;
-  //  KochLine l = lines.get(i);
-  //  l.addValor(recursionLevelArray[2]);    
-  //  do {
-  //    if(i % recursionLevelArray[ii] == 0 ){
-  //      System.out.println(recursionLevelArray[ii]);
-  //      l.addValor(recursionLevelArray[2]);  
-  //    }
-  //    ii++;
-  //  } while (ii<3);
-  //}
-
-
-
-
-
-
-  //for (int i = 0; i < recursionLevel; i++) {
-  //  for (int j= 0; j < numLines; j++) {
-  //    KochLine l = lines.get(j);
-  //    if (j % 12 == 0) {
-  //      l.addValor(1);
-  //    } else if (j % 3 == 0) {
-  //      l.addValor(2);
-  //    } else {
-  //      l.addValor(3);
-  //    }
-  //  }
-  //  division = division / 4;
-  //  println(division);
-  //}
-
-
 
   for (int i=0; i<myImageArray.length; i++) {
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png"); // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
@@ -173,28 +126,10 @@ void generate(int level) {
   }
 
   lines = next;
-  //println(lines.size()); 
-  //for (int i = 0; i <lines.size(); i++) {
-  //  println(level);   
-  //  KochLine l = lines.get(i);
-  //  l.addValor(i);
-  //}
 }
 
 
-//float drawCircle(int radius) {
-
-//  if (radius > 0) {
-//    radius +=0;
-//    println(radius);
-//    return radius;
-//  }
-//}
-
 void keyPressed() {
-  // default properties load/save key combinations are 
-  // alt+shift+l to load properties
-  // alt+shift+s to save properties
   if (key=='1') {
     cp5.saveProperties(("valoresUi.json"));
   } else if (key=='2') {
@@ -203,14 +138,5 @@ void keyPressed() {
     cp5.hide();
   } else if (key == '4') {
     cp5.show();
-  }
-}
-
-
-void controlRecursion(int numLines, int recursionLevel) {
-  int numFrakLines = 4;
-
-  for (int i = 0; i < recursionLevel; i++) {
-    //println();
   }
 }

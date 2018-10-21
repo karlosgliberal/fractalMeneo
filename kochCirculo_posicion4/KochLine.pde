@@ -13,6 +13,7 @@ class KochLine {
     valor = lineNume;
   }
 
+  
   //void addValor(int lineNum) {
 
   //  if (lineNum % 16 == 0) {
@@ -62,31 +63,8 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-
-
-    if (lineNum % 16 == 0) {
-      scale(1.5);
-    }
-    //con estos los principales de raya :P
-    if (lineNum % 4 == 0 && lineNum % 8 != 0 ) {
-      scale(1.5);
-    }
-    if (lineNum % 8 == 0 && lineNum % 16 !=0) {
-      scale(1);
-    }
-    if (lineNum % 2 == 0 && lineNum % 4 != 0 && lineNum % 8 != 0) {
-      scale(0.4);
-    }
-    if (lineNum % 2 == 1) {
-      if (lineNum % 16 <5 || lineNum % 16 >11) {
-        scale(0.75);
-      }
-      if (lineNum % 16 >4 && lineNum % 16 <12) {
-        scale(0.75);
-      }
-    }
-    //hasta aquí
-
+    scale(valor*0.5);
+    
     pushMatrix();
     translate(0, movi);//esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
     //en las coordenadas de la imagen, si ponemos 2movi" también en el X conseguimos una rotación en espiral, mola
