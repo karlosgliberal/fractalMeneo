@@ -39,35 +39,31 @@ class KochLine {
     rotate(ang+angXtra);
 
     //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
-    //y el propio multiplicador
+    //y el propio multiplicador - Molaría botón para que sea 1 exactamente.
     scale(recursionValue*0.4);
 
     pushMatrix();
 
+    //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
+    //Habría que poder activar y desactivar
+    if (recursionValue % 2 == 0) {
+      rotateNeg=-1;
+    }
+
+  
+    //Variabble movi boleana alterna entre rotate y translate
     //este rotate para que este antes o después del translate
     if (debug == 0) {
       rotate(radians(movi)*rotateNeg);
     }
 
-    //en este translate: podrían ser Y e Y los dos movi, uno u otro. Prescindible.
-    //si hacemos movi/recursionValue, se moverán todos igual, los mismos píxeles
+    //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
     if (debug == 0) {
       translate(0, movi);
     }
-    //esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
-    //en las coordenadas de la imagen, si ponemos 2movi" también en el X conseguimos una rotación en espiral, mola
-    //si ponemos solo en el X es más como un baliecito, que combinado 
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
-
-    //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
-    //Habría que poder activar y desactivar
-    if (recursionValue % 2 == 0) {
-      //rotateNeg=-1;
-      //Aquí rotateNeg = "random Bollean -1 o 1)
-    }
-
     if (debug == 0) {
       //rotate(radians(movi)*rotateNeg);
     }

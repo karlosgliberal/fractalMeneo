@@ -1,6 +1,7 @@
 import controlP5.*;
 
 ArrayList<KochLine> lines;   
+//Cuantas imágenes relacionado con java.file
 PImage[] myImageArray = new PImage[6];
 PVector centro = new PVector(0, -1);
 float movi=100;
@@ -87,6 +88,7 @@ void draw() {
 
   //si se va a pirar mucho de la pantalla cambiamos la dirección 
   // esto provoca skratches :P
+  //Controlar con slider 
   if (movi<-200 || movi>700) {
     moviR=-moviR;
   }
@@ -94,16 +96,16 @@ void draw() {
   rotarGeneral += rotateWorldValue;
 
 
-//Rectángulo parar "Borrado" del resto que deja
-//slider para alfa, que se active con el "no fondo"
+  //Rectángulo parar "Borrado" del resto que deja
+  //slider para alfa, que se active con el "no fondo" o "trace"
   pushStyle();
   blendMode(NORMAL);
   noStroke();
-  fill(255, 196, 4, 15); //horia
+  fill(255, 196, 4, 20); //horia
   rect(0, 0, width, height );
   popStyle();  
 
-
+  //salvarJPG();
 }
 
 public void rotateWorld(int value) {
