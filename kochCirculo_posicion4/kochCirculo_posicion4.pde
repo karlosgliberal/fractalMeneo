@@ -8,24 +8,26 @@ float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
 int recursionLevel = 2;
-int lineFracture = 4;
+int lineFracture = 3;
 IntList recursionLevelList;
-public int debug = 0;
+
 ControlP5 cp5;
 CheckBox checkbox;
+public int debug = 1;
 public int rotateWorldValue = 0;
 
 
 void setup() {
   fullScreen();
   background(255, 196, 4); //horia
-  int dimension = height/2-height/20;
+  int dimensions = height/2-height/20;
   lines = new ArrayList<KochLine>();
   recursionLevelList = new IntList();
+  
 
-  PVector a   = new PVector(dimension*cos(radians(210)), dimension*sin(radians(210)));
-  PVector b   = new PVector(dimension*cos(radians(-30)), dimension*sin(radians(-30)));
-  PVector c   = new PVector(dimension*cos(radians(90)), dimension*sin(radians(90))); 
+  PVector a   = new PVector(dimensions*cos(radians(210)), dimensions*sin(radians(210)));
+  PVector b   = new PVector(dimensions*cos(radians(-30)), dimensions*sin(radians(-30)));
+  PVector c   = new PVector(dimensions*cos(radians(90)), dimensions*sin(radians(90))); 
 
   lines.add(new KochLine(a, b));
   lines.add(new KochLine(b, c));
@@ -36,7 +38,8 @@ void setup() {
   }
 
   recursionLevel();
-
+  println(recursionLevelList);
+  
   for (int i=0; i<myImageArray.length; i++) {
     // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png");
@@ -114,7 +117,7 @@ void recursionLevel() {
 
   for (int i = 0; i < recursionLevel; i++) {
     recursionLevelList.append(division);
-    division = division / lineFracture;
+    division = division / 4;
   }
   //Añadimos un ultimo valor para las tres lineas del principio
   recursionLevelList.append(3);
@@ -125,10 +128,10 @@ void recursionLevel() {
     for (int j = 0; j < linesNumbers; j++) {
       KochLine l = lines.get(j);
       if (resto == 0) {
-        l.addValor(1);
+        l.addRecursionValue(1);
       } else {
         if (j % resto == 0) {
-          l.addValor(i+1);
+          l.addRecursionValue(i+1);
         }
       }
     }

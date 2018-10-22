@@ -10,7 +10,7 @@ class KochLine {
   }
 
   //Añade el valor de recursión
-  void addValor(int recursionLevel) {
+  void addRecursionValue(int recursionLevel) {
     recursionValue = recursionLevel;
   }
 
@@ -37,13 +37,18 @@ class KochLine {
     scale( recursionValue*0.5);
 
     pushMatrix();
-    translate(0, movi);
+    if (debug == 1) {
+      translate(0, movi);
+    }
     //esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
     //en las coordenadas de la imagen, si ponemos 2movi" también en el X conseguimos una rotación en espiral, mola
     //si ponemos solo en el X es más como un baliecito, que combinado 
 
-    //esto si en vez de estar aquí, está por encima del translate anterior, gira con radio "movie" y también es interesante
-    rotate(radians(movi));
+    //esto si en vez de estar aquí, está por encima del translate anterior, 
+    //gira con radio "movie" y también es interesante
+    if (debug == 1) {
+      rotate(radians(movi));
+    }
 
     //  tint(255, 180); //esto para transparentar las imágenes
     //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
@@ -59,7 +64,7 @@ class KochLine {
     if (debug == 1) {
       line(start.x, start.y, end.x, end.y);
       textSize(24);
-      text(recursionValue, start.x, end.y);
+      //text(recursionValue, start.x, end.y);
     }
   }
 
