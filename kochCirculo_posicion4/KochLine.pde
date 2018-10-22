@@ -37,7 +37,7 @@ class KochLine {
     scale( recursionValue*0.5);
 
     pushMatrix();
-    if (debug == 1) {
+    if (debug == 0) {
       translate(0, movi);
     }
     //esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
@@ -46,7 +46,7 @@ class KochLine {
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
-    if (debug == 1) {
+    if (debug == 0) {
       rotate(radians(movi));
     }
 
