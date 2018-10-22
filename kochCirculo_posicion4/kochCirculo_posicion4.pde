@@ -10,10 +10,10 @@ float rotarGeneral=0;
 int recursionLevel = 2;
 int lineFracture = 4;
 IntList recursionLevelList;
-public int debug = 1;
+public int debug = 0;
 ControlP5 cp5;
 CheckBox checkbox;
-public int sliderValue = 0;
+public int rotateWorldValue = 0;
 
 
 void setup() {
@@ -43,7 +43,7 @@ void setup() {
   }
 
   cp5 = new ControlP5(this);
-  cp5.addSlider("slider")
+  cp5.addSlider("rotateWorld")
     .setRange(0, 20)
     .setValue(0)
     .setPosition(20, 100)
@@ -76,7 +76,7 @@ void draw() {
   //cada X frames randomiza la dirección y la velocidad 
   //del movimiento (hacia afuera o hacia adentro)
   if (frameCount % 30 == 0) {
-    moviR=1-4*int(random(-1, 2));
+    moviR=1-2*int(random(-1, 2));
   }
 
   movi+=10*moviR*velocidad;
@@ -87,11 +87,11 @@ void draw() {
     moviR=-moviR;
   }
   popMatrix();
-  rotarGeneral += sliderValue;
+  rotarGeneral += rotateWorldValue;
 }
 
-public void slider(int value) {
-  sliderValue = value;
+public void rotateWorld(int value) {
+  rotateWorldValue = value;
 }
 
 
