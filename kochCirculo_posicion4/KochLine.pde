@@ -34,7 +34,7 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    scale( recursionValue*0.5);
+    scale( recursionValue*0.3);
 
     pushMatrix();
     if (debug == 0) {
@@ -64,7 +64,7 @@ class KochLine {
     if (debug == 1) {
       line(start.x, start.y, end.x, end.y);
       textSize(24);
-      //text(recursionValue, start.x, end.y);
+      text(recursionValue, start.x, start.y);
     }
   }
 

@@ -7,7 +7,7 @@ float movi=100;
 float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
-int recursionLevel = 2;
+int recursionLevel = 3;
 int lineFracture = 3;
 IntList recursionLevelList;
 
@@ -23,7 +23,7 @@ void setup() {
   int dimensions = height/2-height/20;
   lines = new ArrayList<KochLine>();
   recursionLevelList = new IntList();
-  
+
 
   PVector a   = new PVector(dimensions*cos(radians(210)), dimensions*sin(radians(210)));
   PVector b   = new PVector(dimensions*cos(radians(-30)), dimensions*sin(radians(-30)));
@@ -39,7 +39,7 @@ void setup() {
 
   recursionLevel();
   println(recursionLevelList);
-  
+
   for (int i=0; i<myImageArray.length; i++) {
     // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png");
@@ -53,7 +53,7 @@ void setup() {
     .setSize(20, 100);
 
 
-   checkbox = cp5.addCheckBox("checkBox")
+  checkbox = cp5.addCheckBox("checkBox")
     .setPosition(20, 220)
     .setSize(20, 20)
     .setItemsPerRow(3)
@@ -101,13 +101,13 @@ public void rotateWorld(int value) {
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(checkbox)) {
-    if(debug==1){
+    if (debug==1) {
       debug = 0;
     } else {
       debug = 1;
     }
-    
-    print("got an event from "+checkbox.getName()+"\t\n");   
+
+    print("got an event from "+checkbox.getName()+"\t\n");
   }
 }
 
@@ -120,6 +120,7 @@ void recursionLevel() {
     division = division / 4;
   }
   //Añadimos un ultimo valor para las tres lineas del principio
+  recursionLevelList.append(6);
   recursionLevelList.append(3);
   recursionLevelList.reverse();
 
