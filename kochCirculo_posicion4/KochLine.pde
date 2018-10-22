@@ -8,13 +8,13 @@ class KochLine {
     end = b.copy();
     recursionValue = 0;
   }
-  
+
   //Añade el valor de recursión
-  void addValor(int recursionLevel){
+  void addValor(int recursionLevel) {
     recursionValue = recursionLevel;
   }
 
- 
+
   void display(int lineNum) {
     pushMatrix();
     translate(start.x, start.y);
@@ -35,7 +35,7 @@ class KochLine {
     } 
     rotate(ang+angXtra);
     scale( recursionValue*0.5);
-    
+
     pushMatrix();
     translate(0, movi);
     //esto aquí en vez de en las coordenadas de la imagen para que el rotate que viene debajo sea sobre el eje de la imagen.
@@ -56,9 +56,11 @@ class KochLine {
 
     stroke(0, 255);
     strokeWeight(3);
-    //line(start.x, start.y, end.x, end.y);
-    //textSize(24);
-    //text(valor, start.x, end.y);
+    if (debug == 1) {
+      line(start.x, start.y, end.x, end.y);
+      textSize(24);
+      text(recursionValue, start.x, end.y);
+    }
   }
 
   PVector kochA() {

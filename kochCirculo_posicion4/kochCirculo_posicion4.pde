@@ -8,8 +8,11 @@ float moviR=1;
 float velocidad=1;
 float rotarGeneral=0;
 int recursionLevel = 2;
-IntList recursionLevelArray;
+int lineFracture = 4;
+IntList recursionLevelList;
+public int debug = 1;
 ControlP5 cp5;
+CheckBox checkbox;
 public int sliderValue = 0;
 
 
@@ -18,7 +21,7 @@ void setup() {
   background(255, 196, 4); //horia
   int dimension = height/2-height/20;
   lines = new ArrayList<KochLine>();
-  recursionLevelArray = new IntList();
+  recursionLevelList = new IntList();
 
   PVector a   = new PVector(dimension*cos(radians(210)), dimension*sin(radians(210)));
   PVector b   = new PVector(dimension*cos(radians(-30)), dimension*sin(radians(-30)));
@@ -32,36 +35,11 @@ void setup() {
     generate();
   }
 
-  int numLines = lines.size();
-  int division = numLines;
-
-  for (int i = 0; i < recursionLevel; i++) {
-    recursionLevelArray.append(division);
-    division = division / 4;
-  }
-  
-  //Añadimos un ultimo valor para las tres lineas del principio
-  recursionLevelArray.append(3);
-  recursionLevelArray.reverse();
-
-  for (int i = 0; i <= recursionLevel; i++) {
-    int resto = recursionLevelArray.get(i) / 4;
-    println(resto);
-    for (int j = 0; j < numLines; j++) {
-      KochLine l = lines.get(j);
-      if (resto == 0) {
-        l.addValor(1);
-      } else {
-        if (j % resto == 0) {
-          l.addValor(i+1);
-        }
-      }
-    }
-  }
+  recursionLevel();
 
   for (int i=0; i<myImageArray.length; i++) {
     // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
-    myImageArray[i]=loadImage("data/" + str(i) + "_125.png"); 
+    myImageArray[i]=loadImage("data/" + str(i) + "_125.png");
   }
 
   cp5 = new ControlP5(this);
@@ -70,6 +48,16 @@ void setup() {
     .setValue(0)
     .setPosition(20, 100)
     .setSize(20, 100);
+
+
+   checkbox = cp5.addCheckBox("checkBox")
+    .setPosition(20, 220)
+    .setSize(20, 20)
+    .setItemsPerRow(3)
+    .setSpacingColumn(30)
+    .setSpacingRow(20)
+    .addItem("debug", 1)
+    ;
 }
 
 void draw() {
@@ -106,6 +94,46 @@ public void slider(int value) {
   sliderValue = value;
 }
 
+
+
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isFrom(checkbox)) {
+    if(debug==1){
+      debug = 0;
+    } else {
+      debug = 1;
+    }
+    
+    print("got an event from "+checkbox.getName()+"\t\n");   
+  }
+}
+
+void recursionLevel() {
+  int linesNumbers = lines.size();
+  int division = linesNumbers;
+
+  for (int i = 0; i < recursionLevel; i++) {
+    recursionLevelList.append(division);
+    division = division / lineFracture;
+  }
+  //Añadimos un ultimo valor para las tres lineas del principio
+  recursionLevelList.append(3);
+  recursionLevelList.reverse();
+
+  for (int i = 0; i <= recursionLevel; i++) {
+    int resto = recursionLevelList.get(i) / lineFracture;
+    for (int j = 0; j < linesNumbers; j++) {
+      KochLine l = lines.get(j);
+      if (resto == 0) {
+        l.addValor(1);
+      } else {
+        if (j % resto == 0) {
+          l.addValor(i+1);
+        }
+      }
+    }
+  }
+}
 
 
 void generate() {
