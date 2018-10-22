@@ -5,21 +5,22 @@ PImage[] myImageArray = new PImage[6];
 PVector centro = new PVector(0, -1);
 float movi=100;
 float moviR=1;
-float velocidad=1;
+float velocidad=0.5;
 float rotarGeneral=0;
-int recursionLevel = 3;
+int recursionLevel = 2;
 int lineFracture = 3;
 IntList recursionLevelList;
 
 ControlP5 cp5;
 CheckBox checkbox;
-public int debug = 1;
+public int debug = 0;
 public int rotateWorldValue = 0;
 
 
 void setup() {
   fullScreen();
   background(255, 196, 4); //horia
+  frameRate(25);
   int dimensions = height/2-height/20;
   lines = new ArrayList<KochLine>();
   recursionLevelList = new IntList();
@@ -68,7 +69,7 @@ void draw() {
   pushMatrix();
   //esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   translate(width/2, height/2);
-  background(255, 196, 4); //horia
+  //background(255, 196, 4); //horia
   rotate(radians(rotarGeneral));
 
   for (int i= 0; i < lines.size(); i++) {
@@ -79,7 +80,7 @@ void draw() {
   //cada X frames randomiza la dirección y la velocidad 
   //del movimiento (hacia afuera o hacia adentro)
   if (frameCount % 30 == 0) {
-    moviR=1-2*int(random(-1, 2));
+    //moviR=1-2*int(random(-1, 2));
   }
 
   movi+=10*moviR*velocidad;
@@ -91,6 +92,18 @@ void draw() {
   }
   popMatrix();
   rotarGeneral += rotateWorldValue;
+
+
+//Rectángulo parar "Borrado" del resto que deja
+//slider para alfa, que se active con el "no fondo"
+  pushStyle();
+  blendMode(NORMAL);
+  noStroke();
+  fill(255, 196, 4, 15); //horia
+  rect(0, 0, width, height );
+  popStyle();  
+
+
 }
 
 public void rotateWorld(int value) {

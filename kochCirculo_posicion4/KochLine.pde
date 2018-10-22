@@ -3,6 +3,9 @@ class KochLine {
   PVector end;
   int recursionValue;
 
+  //variables Anim
+  int rotateNeg =1;
+
   KochLine(PVector a, PVector b) {
     start = a.copy();
     end = b.copy();
@@ -34,9 +37,20 @@ class KochLine {
       angXtra=0;
     } 
     rotate(ang+angXtra);
-    scale( recursionValue*0.3);
+
+    //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
+    //y el propio multiplicador
+    scale(recursionValue*0.4);
 
     pushMatrix();
+
+    //este rotate para que este antes o después del translate
+    if (debug == 0) {
+      rotate(radians(movi)*rotateNeg);
+    }
+
+    //en este translate: podrían ser Y e Y los dos movi, uno u otro. Prescindible.
+    //si hacemos movi/recursionValue, se moverán todos igual, los mismos píxeles
     if (debug == 0) {
       translate(0, movi);
     }
@@ -46,12 +60,24 @@ class KochLine {
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
-    if (debug == 0) {
-      rotate(radians(movi));
+
+    //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
+    //Habría que poder activar y desactivar
+    if (recursionValue % 2 == 0) {
+      //rotateNeg=-1;
+      //Aquí rotateNeg = "random Bollean -1 o 1)
     }
 
-    //  tint(255, 180); //esto para transparentar las imágenes
-    //meto esto y quito el maravillo hack :P y hago sitio limpio para el movimiento.
+    if (debug == 0) {
+      //rotate(radians(movi)*rotateNeg);
+    }
+
+    //slider para controlar el alfa del tint
+    tint(255, 255); 
+
+    //REPLACE si le queremos meter rollo killer que se recorta. Prescindible.
+    //blendMode(REPLACE);
+
     imageMode(CENTER); 
     //le he quitado las medidas y coge las propias del archivo
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 
