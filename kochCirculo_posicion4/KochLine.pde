@@ -51,8 +51,9 @@ class KochLine {
     }
 
   
-    //Variabble movi boleana alterna entre rotate y translate
-    //este rotate para que este antes o después del translate
+    //Variable movi boleana alterna entre rotate y translate
+    //Este rotate para que este antes o después del translate
+    //Añadir un multiplicador random de dirección (ON/OFF y slider para elegir cada cuanto lo hace) *y lo mismo en el rotate de abajo ;)
     if (debug == 0) {
       rotate(radians(movi)*rotateNeg);
     }

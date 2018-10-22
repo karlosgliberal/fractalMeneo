@@ -80,8 +80,9 @@ void draw() {
 
   //cada X frames randomiza la dirección y la velocidad 
   //del movimiento (hacia afuera o hacia adentro)
+  //SLIDER para controlar cada cuanto lo hace y bobtón para activar/desactivar
   if (frameCount % 30 == 0) {
-    //moviR=1-2*int(random(-1, 2));
+    moviR=1-2*int(random(-1, 2));
   }
 
   movi+=10*moviR*velocidad;
