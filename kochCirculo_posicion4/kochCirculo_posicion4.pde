@@ -223,9 +223,10 @@ void generate() {
 
 void keyPressed() {
   if (key=='1') {
-    cp5.saveProperties(("valoresUi.json"));
+    cp5.getProperties().setFormat(ControlP5.SERIALIZED);
+    cp5.saveProperties(("valoresUi.ser"));
   } else if (key=='2') {
-    cp5.loadProperties(("valoresUi.json"));
+    cp5.loadProperties(("valoresUi.ser"));
   } else if (key == '3') {
     cp5.hide();
   } else if (key == '4') {
