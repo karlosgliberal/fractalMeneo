@@ -14,6 +14,8 @@ IntList recursionLevelList;
 
 ControlP5 cp5;
 CheckBox checkbox;
+Knob myKnobA;
+RadioButton r1, r2;
 public int debug = 0;
 public int rotateWorldValue = 0;
 
@@ -48,20 +50,57 @@ void setup() {
   }
 
   cp5 = new ControlP5(this);
+
+  Group g1 = cp5.addGroup("g1")
+    .setPosition(20, 50)
+    .setWidth(400)
+    .setBackgroundHeight(600)
+    .setBackgroundColor(color(5, 70))
+    .setLabel("Controles")
+    ;
+
   cp5.addSlider("rotateWorld")
-    .setRange(0, 20)
+    .setRange(0, 40)
     .setValue(0)
-    .setPosition(20, 100)
-    .setSize(20, 100);
+    .setPosition(20, 60)
+    .setGroup(g1)
+    .setSize(20, 100)
+    ;
 
-
-  checkbox = cp5.addCheckBox("checkBox")
-    .setPosition(20, 220)
+  r1 = cp5.addRadioButton("NivelRecursion")
+    .setPosition(20, 20)
     .setSize(20, 20)
-    .setItemsPerRow(3)
-    .setSpacingColumn(30)
-    .setSpacingRow(20)
-    .addItem("debug", 1)
+    .setColorForeground(color(120))
+    .setItemsPerRow(5)
+    .setSpacingColumn(10)
+    .addItem("0", 0)
+    .addItem("1", 1)
+    .addItem("2", 2)
+    .addItem("3", 3)
+    .addItem("4", 4)
+    .setLabel("Nivel recursion")
+    .setGroup(g1)
+    ;
+
+  for (Toggle t : r1.getItems()) {
+    t.getCaptionLabel().setColorBackground(color(25, 90));
+    t.getCaptionLabel().getStyle().moveMargin(-7, 0, 0, -3);
+    t.getCaptionLabel().getStyle().movePadding(7, 0, 0, 3);
+    t.getCaptionLabel().getStyle().backgroundWidth = 10;
+    t.getCaptionLabel().getStyle().backgroundHeight = 13;
+  }
+
+
+  myKnobA = cp5.addKnob("knob")
+    .setRange(0, 100)
+    .setValue(2)
+    .setPosition(20, 260)
+    .setRadius(30)
+    .setNumberOfTickMarks(5)
+    .setTickMarkLength(5)
+    .snapToTickMarks(true)
+    .setDragDirection(Knob.HORIZONTAL)
+    .setGroup(g1)
     ;
 }
 
@@ -70,7 +109,7 @@ void draw() {
   pushMatrix();
   //esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   translate(width/2, height/2);
-  //background(255, 196, 4); //horia
+  background(255, 196, 4); //horia
   rotate(radians(rotarGeneral));
 
   for (int i= 0; i < lines.size(); i++) {
@@ -99,12 +138,12 @@ void draw() {
 
   //Rectángulo parar "Borrado" del resto que deja
   //slider para alfa, que se active con el "no fondo" o "trace"
-  pushStyle();
-  blendMode(NORMAL);
-  noStroke();
-  fill(255, 196, 4, 20); //horia
-  rect(0, 0, width, height );
-  popStyle();  
+  //pushStyle();
+  //blendMode(NORMAL);
+  //noStroke();
+  //fill(255, 196, 4, 20); //horia
+  //rect(0, 0, width, height );
+  //popStyle();  
 
   //salvarJPG();
 }
@@ -122,8 +161,17 @@ void controlEvent(ControlEvent theEvent) {
     } else {
       debug = 1;
     }
-
     print("got an event from "+checkbox.getName()+"\t\n");
+  }
+  if(theEvent.isFrom(r1)) {
+    for(int i=0;i<theEvent.getGroup().getArrayValue().length;i++) {
+      print(int(theEvent.getGroup().getArrayValue()[i]));
+    }
+    println("\t "+theEvent.getValue());
+    recursionLevel = (int) theEvent.getValue();
+    cp5.hide();
+    setup();
+    cp5.show();
   }
 }
 
