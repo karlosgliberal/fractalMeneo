@@ -11,6 +11,7 @@ float rotarGeneral=2;
 int recursionLevel = 2;
 int lineFracture = 3;
 int porcentajeAleatorio = 10;
+int multiplicadorlimitesVentana = 1;
 IntList recursionLevelList;
 
 boolean toggleTrama = true;
@@ -22,6 +23,7 @@ CheckBox checkbox;
 Knob rotateWorld;
 Knob velocidadKnob;
 Knob porcentajeAleatorioKnob;
+Knob limitesVentanaKnob;
 RadioButton r1, r2;
 public int debug = 0;
 public int rotateWorldValue = 0;
@@ -62,20 +64,12 @@ void setup() {
   cp5 = new ControlP5(this);
 
   Group g1 = cp5.addGroup("g1")
-    .setPosition(20, 50)
-    .setWidth(400)
-    .setBackgroundHeight(600)
+    .setPosition(20, 460)
+    .setWidth(300)
+    .setBackgroundHeight(400)
     .setBackgroundColor(color(5, 70))
     .setLabel("Controles")
     ;
-
-  //cp5.addSlider("rotateWorld")
-  //  .setRange(0, 40)
-  //  .setValue(2)
-  //  .setPosition(20, 60)
-  //  .setGroup(g1)
-  //  .setSize(20, 100)
-  //  ;
 
   r1 = cp5.addRadioButton("NivelRecursion")
     .setPosition(20, 20)
@@ -123,6 +117,19 @@ void setup() {
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     ;
+    
+   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
+    .setRange(1, 10)
+    .setValue(2)
+    .setPosition(20, 160)
+    .setRadius(30)
+    .setNumberOfTickMarks(10)
+    .setTickMarkLength(1)
+    .snapToTickMarks(true)
+    .setDragDirection(Knob.HORIZONTAL)
+    .setGroup(g1)
+    .setLabel("Limite ventanas");
+  ;
 
   velocidadKnob = cp5.addKnob("velocidadKnob")
     .setRange(0, 100)
@@ -180,23 +187,18 @@ void draw() {
   }
 
   if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
-    println("porcentaje");
     moviR=1-2*int(random(-1, 2));
-    println(moviR);
   }
 
   movi+=10*moviR*velocidad;
-
-  //si se va a pirar mucho de la pantalla cambiamos la dirección 
-  // esto provoca skratches :P
-  //Controlar con slider 
-  if (movi<-200 || movi>700) {
+  if (movi<-200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
     moviR=-moviR;
   }
   popMatrix();
   rotarGeneral += rotateWorldValue;
 
-  if (!toggleFondo) {
+println(toggleFondo);
+  if (toggleFondo) {
     pushStyle();
     blendMode(NORMAL);
     noStroke();
@@ -207,25 +209,25 @@ void draw() {
   //salvarJPG();
 }
 
+public void limitesVentanaKnob(int value) {
+  multiplicadorlimitesVentana = value;
+}
+
+
 public void rotateWorld(int value) {
   rotateWorldValue = value;
 }
 
 public void velocidadKnob(int value) {
-  println("movida");
-  println(value);
   velocidad = value * 0.010;
 }
 
 
 public void porcentajeAleatorioKnob(int value) {
-  println(value);
   porcentajeAleatorio = value;
 }
 
-
 public void toggleTrama(boolean value) {
-  println(value);
   toggleTrama = value;
   //if (!value) {
   //  cp5.hide();
@@ -234,7 +236,7 @@ public void toggleTrama(boolean value) {
 
 public void toggleFondo(boolean value) {
   println(value);
-  toggleRandom = value;
+  toggleFondo = value;
 }
 
 public void toggleRandom(boolean value) {
