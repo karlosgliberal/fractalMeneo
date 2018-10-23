@@ -19,6 +19,7 @@ boolean toggleRandom = true;
 
 ControlP5 cp5;
 CheckBox checkbox;
+Knob rotateWorld;
 Knob velocidadKnob;
 Knob porcentajeAleatorioKnob;
 RadioButton r1, r2;
@@ -68,13 +69,13 @@ void setup() {
     .setLabel("Controles")
     ;
 
-  cp5.addSlider("rotateWorld")
-    .setRange(0, 40)
-    .setValue(2)
-    .setPosition(20, 60)
-    .setGroup(g1)
-    .setSize(20, 100)
-    ;
+  //cp5.addSlider("rotateWorld")
+  //  .setRange(0, 40)
+  //  .setValue(2)
+  //  .setPosition(20, 60)
+  //  .setGroup(g1)
+  //  .setSize(20, 100)
+  //  ;
 
   r1 = cp5.addRadioButton("NivelRecursion")
     .setPosition(20, 20)
@@ -136,10 +137,23 @@ void setup() {
     .setLabel("velocidad Movida");
   ;
   
+    rotateWorld = cp5.addKnob("rotateWorld")
+    .setRange(0, 40)
+    .setValue(2)
+    .setPosition(100, 260)
+    .setRadius(30)
+    .setNumberOfTickMarks(20)
+    .setTickMarkLength(2)
+    .snapToTickMarks(true)
+    .setDragDirection(Knob.HORIZONTAL)
+    .setGroup(g1)
+    .setLabel("Rotar el mundo");
+  ;
+  
     porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
     .setRange(10, 100)
     .setValue(30)
-    .setPosition(120, 260)
+    .setPosition(180, 260)
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(5)
