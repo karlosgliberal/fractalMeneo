@@ -12,6 +12,9 @@ int recursionLevel = 2;
 int lineFracture = 3;
 IntList recursionLevelList;
 
+boolean toggleTrama = true;
+boolean toggleFondo = false;
+
 ControlP5 cp5;
 CheckBox checkbox;
 Knob velocidadKnob;
@@ -22,7 +25,10 @@ public int rotateWorldValue = 0;
 
 void setup() {
   fullScreen();
-  background(255, 196, 4); //horia
+  if(toggleTrama){
+    background(255, 196, 4); //horia
+  }
+  
   frameRate(25);
   int dimensions = height/2-height/20;
   lines = new ArrayList<KochLine>();
@@ -90,19 +96,34 @@ void setup() {
     t.getCaptionLabel().getStyle().backgroundHeight = 13;
   }
 
+  cp5.addToggle("toggleTrama")
+    .setPosition(20, 350)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    ;
+
+  cp5.addToggle("toggleFondo")
+    .setPosition(20, 380)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    ;
 
   velocidadKnob = cp5.addKnob("velocidadKnob")
     .setRange(0, 100)
     .setValue(2)
     .setPosition(20, 260)
     .setRadius(30)
-    .setNumberOfTickMarks(5)
+    .setNumberOfTickMarks(10)
     .setTickMarkLength(5)
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("velocidad Movida");
-    ;
+  ;
 }
 
 void draw() {
@@ -110,7 +131,11 @@ void draw() {
   pushMatrix();
   //esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   translate(width/2, height/2);
-  background(255, 196, 4); //horia
+
+  if (toggleTrama) {
+    background(255, 196, 4); //horia
+  }
+
   rotate(radians(rotarGeneral));
 
   for (int i= 0; i < lines.size(); i++) {
@@ -139,19 +164,42 @@ void draw() {
 
   //Rectángulo parar "Borrado" del resto que deja
   //slider para alfa, que se active con el "no fondo" o "trace"
-  //pushStyle();
-  //blendMode(NORMAL);
-  //noStroke();
-  //fill(255, 196, 4, 20); //horia
-  //rect(0, 0, width, height );
-  //popStyle();  
-
+  if (toggleFondo) {
+    pushStyle();
+    blendMode(NORMAL);
+    noStroke();
+    fill(255, 196, 4, 20); //horia
+    rect(0, 0, width, height );
+    popStyle();
+  }
   //salvarJPG();
 }
 
 public void rotateWorld(int value) {
   rotateWorldValue = value;
 }
+
+public void velocidadKnob(int value) {
+  println("movida");
+  println(value);
+  velocidad = value * 0.010;
+}
+
+public void toggleTrama(boolean value) {
+  println("trama");
+  println(value);
+  toggleTrama = value;
+  if (!value) {
+    cp5.hide();
+  }
+}
+
+public void toggleFondo(boolean value) {
+  println("trama");
+  println(value);
+  toggleFondo = value;
+}
+
 
 
 
@@ -164,8 +212,8 @@ void controlEvent(ControlEvent theEvent) {
     }
     print("got an event from "+checkbox.getName()+"\t\n");
   }
-  if(theEvent.isFrom(r1)) {
-    for(int i=0;i<theEvent.getGroup().getArrayValue().length;i++) {
+  if (theEvent.isFrom(r1)) {
+    for (int i=0; i<theEvent.getGroup().getArrayValue().length; i++) {
       print(int(theEvent.getGroup().getArrayValue()[i]));
     }
     println("\t "+theEvent.getValue());
@@ -174,10 +222,6 @@ void controlEvent(ControlEvent theEvent) {
     setup();
     cp5.show();
   }
-  if(theEvent.isFrom(velocidadKnob)) {
-    velocidad = theEvent.getValue() * 0.10;
-  }
-  
 }
 
 void recursionLevel() {
