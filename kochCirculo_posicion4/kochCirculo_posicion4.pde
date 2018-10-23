@@ -6,18 +6,21 @@ PImage[] myImageArray = new PImage[6];
 PVector centro = new PVector(0, -1);
 float movi=100;
 float moviR=1;
-float velocidad=0.5;
-float rotarGeneral=0;
+float velocidad=10;
+float rotarGeneral=2;
 int recursionLevel = 2;
 int lineFracture = 3;
+int porcentajeAleatorio = 10;
 IntList recursionLevelList;
 
 boolean toggleTrama = true;
-boolean toggleFondo = false;
+boolean toggleFondo = true;
+boolean toggleRandom = true;
 
 ControlP5 cp5;
 CheckBox checkbox;
 Knob velocidadKnob;
+Knob porcentajeAleatorioKnob;
 RadioButton r1, r2;
 public int debug = 0;
 public int rotateWorldValue = 0;
@@ -25,7 +28,7 @@ public int rotateWorldValue = 0;
 
 void setup() {
   fullScreen();
-  if(toggleTrama){
+  if(!toggleTrama){
     background(255, 196, 4); //horia
   }
   
@@ -67,7 +70,7 @@ void setup() {
 
   cp5.addSlider("rotateWorld")
     .setRange(0, 40)
-    .setValue(0)
+    .setValue(2)
     .setPosition(20, 60)
     .setGroup(g1)
     .setSize(20, 100)
@@ -105,7 +108,15 @@ void setup() {
     ;
 
   cp5.addToggle("toggleFondo")
-    .setPosition(20, 380)
+    .setPosition(100, 350)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    ;
+    
+   cp5.addToggle("toggleRandom")
+    .setPosition(180, 350)
     .setSize(50, 20)
     .setValue(false)
     .setMode(ControlP5.SWITCH)
@@ -124,16 +135,27 @@ void setup() {
     .setGroup(g1)
     .setLabel("velocidad Movida");
   ;
+  
+    porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
+    .setRange(10, 100)
+    .setValue(30)
+    .setPosition(120, 260)
+    .setRadius(30)
+    .setNumberOfTickMarks(10)
+    .setTickMarkLength(5)
+    .snapToTickMarks(true)
+    .setDragDirection(Knob.HORIZONTAL)
+    .setGroup(g1)
+    .setLabel("Porcentaje aleatorio");
+  ;
 }
 
 void draw() {
-
   pushMatrix();
-  //esto es necesario para centrar y cejar la coordenada 0,0 en el centro del canvas
   translate(width/2, height/2);
 
-  if (toggleTrama) {
-    background(255, 196, 4); //horia
+  if (!toggleTrama) {
+    background(255, 196, 4);
   }
 
   rotate(radians(rotarGeneral));
@@ -143,11 +165,10 @@ void draw() {
     l.display(i);
   }
 
-  //cada X frames randomiza la dirección y la velocidad 
-  //del movimiento (hacia afuera o hacia adentro)
-  //SLIDER para controlar cada cuanto lo hace y bobtón para activar/desactivar
-  if (frameCount % 30 == 0) {
+  if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
+    println("porcentaje");
     moviR=1-2*int(random(-1, 2));
+    println(moviR);
   }
 
   movi+=10*moviR*velocidad;
@@ -161,10 +182,7 @@ void draw() {
   popMatrix();
   rotarGeneral += rotateWorldValue;
 
-
-  //Rectángulo parar "Borrado" del resto que deja
-  //slider para alfa, que se active con el "no fondo" o "trace"
-  if (toggleFondo) {
+  if (!toggleFondo) {
     pushStyle();
     blendMode(NORMAL);
     noStroke();
@@ -185,22 +203,30 @@ public void velocidadKnob(int value) {
   velocidad = value * 0.010;
 }
 
+
+public void porcentajeAleatorioKnob(int value) {
+  println(value);
+  porcentajeAleatorio = value;
+}
+
+
 public void toggleTrama(boolean value) {
-  println("trama");
   println(value);
   toggleTrama = value;
-  if (!value) {
-    cp5.hide();
-  }
+  //if (!value) {
+  //  cp5.hide();
+  //}
 }
 
 public void toggleFondo(boolean value) {
-  println("trama");
   println(value);
-  toggleFondo = value;
+  toggleRandom = value;
 }
 
-
+public void toggleRandom(boolean value) {
+  println("movida radom");
+  toggleRandom = value;
+}
 
 
 void controlEvent(ControlEvent theEvent) {
