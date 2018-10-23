@@ -14,7 +14,7 @@ IntList recursionLevelList;
 
 ControlP5 cp5;
 CheckBox checkbox;
-Knob myKnobA;
+Knob velocidadKnob;
 RadioButton r1, r2;
 public int debug = 0;
 public int rotateWorldValue = 0;
@@ -91,7 +91,7 @@ void setup() {
   }
 
 
-  myKnobA = cp5.addKnob("knob")
+  velocidadKnob = cp5.addKnob("velocidadKnob")
     .setRange(0, 100)
     .setValue(2)
     .setPosition(20, 260)
@@ -101,6 +101,7 @@ void setup() {
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
+    .setLabel("velocidad Movida");
     ;
 }
 
@@ -173,6 +174,10 @@ void controlEvent(ControlEvent theEvent) {
     setup();
     cp5.show();
   }
+  if(theEvent.isFrom(velocidadKnob)) {
+    velocidad = theEvent.getValue() * 0.10;
+  }
+  
 }
 
 void recursionLevel() {
