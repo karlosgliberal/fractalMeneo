@@ -66,8 +66,8 @@ void setup() {
 
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
-    .setPosition(20, 460)
-    .setWidth(300)
+    .setPosition(10, 490)
+    .setWidth(260)
     .setBackgroundHeight(400)
     .setBackgroundColor(color(5, 70))
     .setLabel("Controles")
@@ -112,7 +112,7 @@ void setup() {
   
   scalaKnob = cp5.addKnob("scalaKnob")
     .setRange(1, 10)
-    .setValue(0)
+    .setValue(4)
     .setPosition(100, 60)
     .setRadius(30)
     .setNumberOfTickMarks(10)
@@ -353,6 +353,8 @@ void keyPressed() {
     cp5.getProperties().setFormat(ControlP5.SERIALIZED);
     cp5.saveProperties(("valoresUi.ser"));
   } else if (key=='2') {
+    println("load");
+    cp5.getProperties().setFormat(ControlP5.SERIALIZED);
     cp5.loadProperties(("valoresUi.ser"));
   } else if (key == '3') {
     cp5.hide();

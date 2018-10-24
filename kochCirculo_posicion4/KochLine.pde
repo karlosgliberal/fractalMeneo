@@ -50,12 +50,10 @@ class KochLine {
     //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
     //Habría que poder activar y desactivar
     if (!toggleGirosImpares) {
-      println("toogle");
       if (recursionValue % 2 == 0) {
         rotateNeg=-1;
       }
     }else{
-       println("No toogle");
       rotateNeg=1;
     }
 
@@ -68,8 +66,7 @@ class KochLine {
 
 
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
-
-    translate(0, movi);
+    translate(0, movi/recursionValue);
 
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
@@ -85,9 +82,7 @@ class KochLine {
     //blendMode(REPLACE);
 
     imageMode(CENTER); 
-    //le he quitado las medidas y coge las propias del archivo
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 
-
     popMatrix();
     popMatrix();
 
