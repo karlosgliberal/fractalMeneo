@@ -19,6 +19,8 @@ int multiplicadorlimitesVentana = 1;
 float scalaVentana = 0.4;
 IntList recursionLevelList;
 
+boolean gui; 
+
 boolean toggleTrama = true;
 boolean toggleFondo = true;
 boolean toggleRandom = false;
@@ -75,7 +77,7 @@ void setup() {
     if (filenames[i] == ".DS_Store") {
       //myImageArray[i]=loadImage("data/" + filenames[i]);
     } else {
-        myImageArray[i]=loadImage("data/" + filenames[i]);
+      myImageArray[i]=loadImage("data/" + filenames[i]);
     }
   }
 
@@ -407,8 +409,9 @@ void keyPressed() {
     cp5.getProperties().setFormat(ControlP5.SERIALIZED);
     cp5.loadProperties(("valoresUi.ser"));
   } else if (key == '3') {
-    cp5.hide();
-  } else if (key == '4') {
-    cp5.show();
+    if (gui ^= true) {
+      noCursor();
+      cp5.hide();
+    } else cp5.show();
   }
 }
