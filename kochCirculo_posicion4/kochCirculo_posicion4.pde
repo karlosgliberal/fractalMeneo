@@ -41,6 +41,11 @@ public int rotateWorldValue = 0;
 
 
 void setup() {
+  
+  //background(255, 196, 4); //horia
+  //background(252, 13, 17); //gorria
+  //background(253, 81, 191); //larrosa
+  
   //listFileNames
   String[] filenames = listFileNames(sketchPath("data"));
   myImageArray = new PImage[filenames.length];
@@ -112,6 +117,35 @@ void setup() {
     t.getCaptionLabel().getStyle().backgroundWidth = 10;
     t.getCaptionLabel().getStyle().backgroundHeight = 13;
   };
+  
+
+  
+   cp5.addBang("horia")
+     .setPosition(20, 250)
+     .setSize(20, 20)
+     .setTriggerEvent(Bang.RELEASE)
+     .setColorForeground(color(255, 196, 4))
+     .setGroup(g1)
+     .setLabel("Horia")
+     ;
+     
+     cp5.addBang("gorria")
+     .setPosition(60, 250)
+     .setSize(20, 20)
+     .setTriggerEvent(Bang.RELEASE)
+     .setColorForeground(color(252, 13, 17))
+     .setGroup(g1)
+     .setLabel("Horia")
+     ;
+
+    cp5.addBang("larrosa")
+     .setPosition(100, 250)
+     .setSize(20, 20)
+     .setTriggerEvent(Bang.RELEASE)
+     .setColorForeground(color(253, 81, 191))
+     .setGroup(g1)
+     .setLabel("Horia")
+     ;
 
   //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
