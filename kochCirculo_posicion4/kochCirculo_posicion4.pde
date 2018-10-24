@@ -31,10 +31,10 @@ public int rotateWorldValue = 0;
 
 void setup() {
   fullScreen();
-  if(!toggleTrama){
+  if (!toggleTrama) {
     background(255, 196, 4); //horia
   }
-  
+
   frameRate(25);
   int dimensions = height/2-height/20;
   lines = new ArrayList<KochLine>();
@@ -54,15 +54,12 @@ void setup() {
   }
 
   recursionLevel();
-  println(recursionLevelList);
-
   for (int i=0; i<myImageArray.length; i++) {
     // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
     myImageArray[i]=loadImage("data/" + str(i) + "_125.png");
   }
 
   cp5 = new ControlP5(this);
-
   Group g1 = cp5.addGroup("g1")
     .setPosition(20, 460)
     .setWidth(300)
@@ -109,16 +106,16 @@ void setup() {
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     ;
-    
-   cp5.addToggle("toggleRandom")
+
+  cp5.addToggle("toggleRandom")
     .setPosition(180, 350)
     .setSize(50, 20)
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     ;
-    
-   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
+
+  limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
     .setRange(1, 10)
     .setValue(2)
     .setPosition(20, 160)
@@ -143,8 +140,8 @@ void setup() {
     .setGroup(g1)
     .setLabel("velocidad Movida");
   ;
-  
-    rotateWorld = cp5.addKnob("rotateWorld")
+
+  rotateWorld = cp5.addKnob("rotateWorld")
     .setRange(0, 40)
     .setValue(2)
     .setPosition(100, 260)
@@ -156,8 +153,8 @@ void setup() {
     .setGroup(g1)
     .setLabel("Rotar el mundo");
   ;
-  
-    porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
+
+  porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
     .setRange(10, 100)
     .setValue(30)
     .setPosition(180, 260)
@@ -197,7 +194,7 @@ void draw() {
   popMatrix();
   rotarGeneral += rotateWorldValue;
 
-println(toggleFondo);
+  
   if (toggleFondo) {
     pushStyle();
     blendMode(NORMAL);
@@ -246,19 +243,7 @@ public void toggleRandom(boolean value) {
 
 
 void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isFrom(checkbox)) {
-    if (debug==1) {
-      debug = 0;
-    } else {
-      debug = 1;
-    }
-    print("got an event from "+checkbox.getName()+"\t\n");
-  }
   if (theEvent.isFrom(r1)) {
-    for (int i=0; i<theEvent.getGroup().getArrayValue().length; i++) {
-      print(int(theEvent.getGroup().getArrayValue()[i]));
-    }
-    println("\t "+theEvent.getValue());
     recursionLevel = (int) theEvent.getValue();
     cp5.hide();
     setup();
