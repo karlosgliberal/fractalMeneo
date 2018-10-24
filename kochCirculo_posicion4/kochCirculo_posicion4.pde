@@ -18,7 +18,9 @@ int porcentajeAleatorio = 10;
 int multiplicadorlimitesVentana = 1;
 float scalaVentana = 0.4;
 IntList recursionLevelList;
-
+color[] listacolores;
+color colorDefecto;
+int colorValorArray = 55;
 boolean gui; 
 
 boolean toggleTrama = true;
@@ -36,24 +38,28 @@ Knob porcentajeAleatorioKnob;
 Knob limitesVentanaKnob;
 Knob scalaKnob;
 RadioButton r1, r2;
+Bang horia, gorria, larrosa;
 public int debug = 0;
 public int rotateWorldValue = 0;
 
 
 void setup() {
   
-  //background(255, 196, 4); //horia
-  //background(252, 13, 17); //gorria
-  //background(253, 81, 191); //larrosa
+  int movidass = (colorValorArray == 55 ? 0 : colorValorArray);
   
+  listacolores = new color[3];
+  listacolores[0] = color(255, 196, 4); //horia
+  listacolores[1] = color(252, 13, 17); //gorria
+  listacolores[2] = color(253, 81, 191); //larrosa
+  colorDefecto = listacolores[movidass];
+
   //listFileNames
   String[] filenames = listFileNames(sketchPath("data"));
   myImageArray = new PImage[filenames.length];
 
-
   fullScreen();
   if (!toggleTrama) {
-    background(255, 196, 4); //horia
+    background(colorDefecto);
   }
 
   frameRate(25);
@@ -78,12 +84,8 @@ void setup() {
   recursionLevel();
 
   for (int i=0; i<myImageArray.length; i++) {
-    println(filenames[i]);
-    if (filenames[i] == ".DS_Store") {
-      //myImageArray[i]=loadImage("data/" + filenames[i]);
-    } else {
-      myImageArray[i]=loadImage("data/" + filenames[i]);
-    }
+
+    myImageArray[i]=loadImage("data/" + filenames[i]);
   }
 
   cp5 = new ControlP5(this);
@@ -117,35 +119,35 @@ void setup() {
     t.getCaptionLabel().getStyle().backgroundWidth = 10;
     t.getCaptionLabel().getStyle().backgroundHeight = 13;
   };
-  
 
-  
-   cp5.addBang("horia")
-     .setPosition(20, 250)
-     .setSize(20, 20)
-     .setTriggerEvent(Bang.RELEASE)
-     .setColorForeground(color(255, 196, 4))
-     .setGroup(g1)
-     .setLabel("Horia")
-     ;
-     
-     cp5.addBang("gorria")
-     .setPosition(60, 250)
-     .setSize(20, 20)
-     .setTriggerEvent(Bang.RELEASE)
-     .setColorForeground(color(252, 13, 17))
-     .setGroup(g1)
-     .setLabel("Horia")
-     ;
 
-    cp5.addBang("larrosa")
-     .setPosition(100, 250)
-     .setSize(20, 20)
-     .setTriggerEvent(Bang.RELEASE)
-     .setColorForeground(color(253, 81, 191))
-     .setGroup(g1)
-     .setLabel("Horia")
-     ;
+  gorria = cp5.addBang("gorria")
+    .setPosition(60, 250)
+    .setSize(20, 20)
+    .setValue(1)
+    .setColorForeground(listacolores[1])
+    .setGroup(g1)
+    .setLabel("Gorria")
+    ;
+
+  larrosa = cp5.addBang("larrosa")
+    .setPosition(100, 250)
+    .setSize(20, 20)
+    .setValue(2)
+    .setColorForeground(listacolores[2])
+    .setGroup(g1)
+    .setLabel("Larrosa")
+    ;
+
+  horia = cp5.addBang("horia")
+    .setPosition(20, 250)
+    .setSize(20, 20)
+    .setValue(0)
+    //.setTriggerEvent(Bang.RELEASE)
+    .setColorForeground(listacolores[0])
+    .setGroup(g1)
+    .setLabel("Horia")
+    ;
 
   //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
@@ -275,7 +277,7 @@ void draw() {
   translate(width/2, height/2);
 
   if (!toggleTrama) {
-    background(255, 196, 4);
+    background(colorDefecto);
   }
 
   rotate(radians(rotarGeneral));
@@ -337,7 +339,6 @@ public void scalaKnob(int value) {
   scalaVentana = value * 0.1;
 }
 
-
 public void rotateWorld(int value) {
   rotateWorldValue = value;
 }
@@ -345,7 +346,6 @@ public void rotateWorld(int value) {
 public void velocidadKnob(int value) {
   velocidad = value * 0.010;
 }
-
 
 public void porcentajeAleatorioKnob(int value) {
   porcentajeAleatorio = value;
@@ -378,6 +378,26 @@ public void toggleRandom(boolean value) {
   toggleRandom = value;
 }
 
+//public void horia(int value) {
+//  colorDefecto = listacolores[value];
+//}
+
+//public void gorria(int value) {
+//  colorDefecto = listacolores[value];
+//}
+
+//public void larrosa(int value) {
+//  cambioFondo(value);
+//}
+
+//void cambioFondo(int value) {
+//  println("cambio");
+//  colorDefecto = listacolores[value];
+//  if (!toggleFondo) {
+//    println("cambio dentro");
+//    //setup();
+//  }
+//}
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(r1)) {
@@ -386,6 +406,34 @@ void controlEvent(ControlEvent theEvent) {
     setup();
     cp5.show();
   }
+  if (theEvent.isFrom(horia)) {
+    int movida = (int) theEvent.getValue();
+    colorDefecto = listacolores[movida];
+    if (!toggleFondo) {
+      setup();
+    }
+  }
+  if (theEvent.isFrom(gorria)) {
+    int movida = (int) theEvent.getValue();
+    println(movida);
+    colorDefecto = listacolores[movida];
+    if (!toggleFondo) {
+      setup();
+    }
+  }  
+  if (theEvent.isFrom(larrosa)) {
+
+    int movida = (int) theEvent.getValue();
+    colorValorArray = movida;
+    colorDefecto = listacolores[movida];
+    if (!toggleFondo) {
+      setup();
+    }
+  }
+
+  //if(theEvent.isFrom()){
+  //  println(theEvent.getValue());
+  //}
 }
 
 void recursionLevel() {
