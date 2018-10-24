@@ -446,6 +446,9 @@ void keyPressed() {
     if (gui ^= true) {
       noCursor();
       cp5.hide();
-    } else cp5.show();
+    } else {
+      cp5.show();
+      cursor();
+    }
   }
 }
