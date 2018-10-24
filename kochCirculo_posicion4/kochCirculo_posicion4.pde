@@ -12,11 +12,13 @@ int recursionLevel = 2;
 int lineFracture = 3;
 int porcentajeAleatorio = 10;
 int multiplicadorlimitesVentana = 1;
+float scalaVentana = 0.4;
 IntList recursionLevelList;
 
 boolean toggleTrama = true;
 boolean toggleFondo = true;
 boolean toggleRandom = true;
+boolean toggleScala = true;
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -24,6 +26,7 @@ Knob rotateWorld;
 Knob velocidadKnob;
 Knob porcentajeAleatorioKnob;
 Knob limitesVentanaKnob;
+Knob scalaKnob;
 RadioButton r1, r2;
 public int debug = 0;
 public int rotateWorldValue = 0;
@@ -89,36 +92,13 @@ void setup() {
     t.getCaptionLabel().getStyle().movePadding(7, 0, 0, 3);
     t.getCaptionLabel().getStyle().backgroundWidth = 10;
     t.getCaptionLabel().getStyle().backgroundHeight = 13;
-  }
-
-  cp5.addToggle("toggleTrama")
-    .setPosition(20, 350)
-    .setSize(50, 20)
-    .setValue(false)
-    .setMode(ControlP5.SWITCH)
-    .setGroup(g1)
-    ;
-
-  cp5.addToggle("toggleFondo")
-    .setPosition(100, 350)
-    .setSize(50, 20)
-    .setValue(false)
-    .setMode(ControlP5.SWITCH)
-    .setGroup(g1)
-    ;
-
-  cp5.addToggle("toggleRandom")
-    .setPosition(180, 350)
-    .setSize(50, 20)
-    .setValue(false)
-    .setMode(ControlP5.SWITCH)
-    .setGroup(g1)
-    ;
-
+  };
+  
+  //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
     .setRange(1, 10)
-    .setValue(2)
-    .setPosition(20, 160)
+    .setValue(0)
+    .setPosition(20, 60)
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(1)
@@ -127,11 +107,25 @@ void setup() {
     .setGroup(g1)
     .setLabel("Limite ventanas");
   ;
+  
+  scalaKnob = cp5.addKnob("scalaKnob")
+    .setRange(1, 10)
+    .setValue(0)
+    .setPosition(100, 60)
+    .setRadius(30)
+    .setNumberOfTickMarks(10)
+    .setTickMarkLength(1)
+    .snapToTickMarks(true)
+    .setDragDirection(Knob.HORIZONTAL)
+    .setGroup(g1)
+    .setLabel("Multiplicador scala");
+  ;
+
 
   velocidadKnob = cp5.addKnob("velocidadKnob")
     .setRange(0, 100)
     .setValue(2)
-    .setPosition(20, 260)
+    .setPosition(20, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(5)
@@ -143,8 +137,8 @@ void setup() {
 
   rotateWorld = cp5.addKnob("rotateWorld")
     .setRange(0, 40)
-    .setValue(2)
-    .setPosition(100, 260)
+    .setValue(0)
+    .setPosition(100, 160)
     .setRadius(30)
     .setNumberOfTickMarks(20)
     .setTickMarkLength(2)
@@ -157,7 +151,7 @@ void setup() {
   porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
     .setRange(10, 100)
     .setValue(30)
-    .setPosition(180, 260)
+    .setPosition(180, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(5)
@@ -165,6 +159,42 @@ void setup() {
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Porcentaje aleatorio");
+  ;
+
+  cp5.addToggle("toggleScala")
+    .setPosition(20, 300)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Scala");
+  ;
+
+  cp5.addToggle("toggleTrama")
+    .setPosition(20, 350)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Trama");
+  ;
+
+  cp5.addToggle("toggleFondo")
+    .setPosition(100, 350)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Fondo");
+  ;
+
+  cp5.addToggle("toggleRandom")
+    .setPosition(180, 350)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Quitar Random");
   ;
 }
 
@@ -194,7 +224,7 @@ void draw() {
   popMatrix();
   rotarGeneral += rotateWorldValue;
 
-  
+
   if (toggleFondo) {
     pushStyle();
     blendMode(NORMAL);
@@ -208,6 +238,10 @@ void draw() {
 
 public void limitesVentanaKnob(int value) {
   multiplicadorlimitesVentana = value;
+}
+
+public void scalaKnob(int value) { 
+  scalaVentana = value * 0.1;
 }
 
 
@@ -224,6 +258,10 @@ public void porcentajeAleatorioKnob(int value) {
   porcentajeAleatorio = value;
 }
 
+public void toggleScala(boolean value) {
+  toggleScala = value;
+}
+
 public void toggleTrama(boolean value) {
   toggleTrama = value;
   //if (!value) {
@@ -232,12 +270,10 @@ public void toggleTrama(boolean value) {
 }
 
 public void toggleFondo(boolean value) {
-  println(value);
   toggleFondo = value;
 }
 
 public void toggleRandom(boolean value) {
-  println("movida radom");
   toggleRandom = value;
 }
 

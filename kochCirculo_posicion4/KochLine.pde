@@ -40,7 +40,10 @@ class KochLine {
 
     //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
     //y el propio multiplicador - Molaría botón para que sea 1 exactamente.
-    scale(recursionValue*0.4);
+    if (!toggleScala) {
+      scale(recursionValue*scalaVentana);
+    }
+
 
     pushMatrix();
 
@@ -50,7 +53,7 @@ class KochLine {
       rotateNeg=-1;
     }
 
-  
+
     //Variable movi boleana alterna entre rotate y translate
     //Este rotate para que este antes o después del translate
     //Añadir un multiplicador random de dirección (ON/OFF y slider para elegir cada cuanto lo hace) *y lo mismo en el rotate de abajo ;)
