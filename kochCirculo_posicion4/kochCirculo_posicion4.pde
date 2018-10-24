@@ -1,8 +1,12 @@
 import controlP5.*;
+import java.io.File;
+
+File folder;
+String [] filenames;
 
 ArrayList<KochLine> lines;   
 //Cuantas imágenes relacionado con java.file
-PImage[] myImageArray = new PImage[6];
+PImage[] myImageArray;
 PVector centro = new PVector(0, -1);
 float movi=100;
 float moviR=1;
@@ -35,6 +39,11 @@ public int rotateWorldValue = 0;
 
 
 void setup() {
+  //listFileNames
+  String[] filenames = listFileNames(sketchPath("data"));
+  myImageArray = new PImage[filenames.length];
+
+
   fullScreen();
   if (!toggleTrama) {
     background(255, 196, 4); //horia
@@ -60,9 +69,14 @@ void setup() {
 
 
   recursionLevel();
+
   for (int i=0; i<myImageArray.length; i++) {
-    // Aquí cambias el formato de las imágenes (de _250 solo hay 3)
-    myImageArray[i]=loadImage("data/" + str(i) + "_125.png");
+    println(filenames[i]);
+    if (filenames[i] == ".DS_Store") {
+      //myImageArray[i]=loadImage("data/" + filenames[i]);
+    } else {
+        myImageArray[i]=loadImage("data/" + filenames[i]);
+    }
   }
 
   cp5 = new ControlP5(this);
@@ -236,11 +250,8 @@ void draw() {
   }
 
   if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
-    println("toogle random");
     moviR=1-2*int(random(-1, 2));
-  } else {
-    println("no toogle");
-  }
+  } 
 
   movi+=10*moviR*velocidad;
   if (movi<-200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
@@ -260,6 +271,27 @@ void draw() {
   }
   //salvarJPG();
 }
+
+//function to get all files in the data folder
+String[] listFileNames(String dir) {
+  File file = new File(dir);
+  if (file.isDirectory()) {
+    String names[] = file.list();
+
+    StringList filelist = new StringList();
+
+    for (String s : names) {
+      if (!s.contains("DS_Store")) {
+        filelist.append(s);
+      }
+    }
+    return filelist.array();
+  } else {
+    // if it's not a directory
+    return null;
+  }
+}
+
 
 public void limitesVentanaKnob(int value) {
   multiplicadorlimitesVentana = value;
