@@ -19,6 +19,7 @@ boolean toggleTrama = true;
 boolean toggleFondo = true;
 boolean toggleRandom = true;
 boolean toggleScala = true;
+boolean toggleGirosImpares = true;
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -55,6 +56,7 @@ void setup() {
   for (int i = 0; i < recursionLevel; i++) {
     generate();
   }
+
 
   recursionLevel();
   for (int i=0; i<myImageArray.length; i++) {
@@ -169,6 +171,15 @@ void setup() {
     .setGroup(g1)
     .setLabel("Scala");
   ;
+  
+    cp5.addToggle("toggleGirosImpares")
+    .setPosition(100, 300)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Giros impares");
+  ;
 
   cp5.addToggle("toggleTrama")
     .setPosition(20, 350)
@@ -260,6 +271,10 @@ public void porcentajeAleatorioKnob(int value) {
 
 public void toggleScala(boolean value) {
   toggleScala = value;
+}
+
+public void toggleGirosImpares(boolean value) {
+  toggleGirosImpares = value;
 }
 
 public void toggleTrama(boolean value) {

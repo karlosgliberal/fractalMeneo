@@ -49,22 +49,28 @@ class KochLine {
 
     //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
     //Habría que poder activar y desactivar
-    if (recursionValue % 2 == 0) {
-      rotateNeg=-1;
+    if (!toggleGirosImpares) {
+      println("toogle");
+      if (recursionValue % 2 == 0) {
+        rotateNeg=-1;
+      }
+    }else{
+       println("No toogle");
+      rotateNeg=1;
     }
 
 
     //Variable movi boleana alterna entre rotate y translate
     //Este rotate para que este antes o después del translate
     //Añadir un multiplicador random de dirección (ON/OFF y slider para elegir cada cuanto lo hace) *y lo mismo en el rotate de abajo ;)
-    if (debug == 0) {
-      rotate(radians(movi)*rotateNeg);
-    }
+
+    rotate(radians(movi)*rotateNeg);
+
 
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
-    if (debug == 0) {
-      translate(0, movi);
-    }
+
+    translate(0, movi);
+
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
