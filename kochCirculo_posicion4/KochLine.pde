@@ -64,7 +64,6 @@ class KochLine {
 
     rotate(radians(movi)*rotateNeg);
 
-
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
     translate(0, movi/recursionValue);
 
@@ -72,14 +71,17 @@ class KochLine {
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
     if (debug == 0) {
-      //rotate(radians(movi)*rotateNeg);
+      rotate(radians(movi)*rotateNeg);
     }
 
     //slider para controlar el alfa del tint
     tint(255, 255); 
 
     //REPLACE si le queremos meter rollo killer que se recorta. Prescindible.
-    //blendMode(REPLACE);
+    if(!toggleKiller){
+      blendMode(REPLACE);
+    }
+    
 
     imageMode(CENTER); 
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 

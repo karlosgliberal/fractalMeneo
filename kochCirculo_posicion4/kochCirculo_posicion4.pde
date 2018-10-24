@@ -17,9 +17,10 @@ IntList recursionLevelList;
 
 boolean toggleTrama = true;
 boolean toggleFondo = true;
-boolean toggleRandom = true;
+boolean toggleRandom = false;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
+boolean toggleKiller = false;
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -95,7 +96,7 @@ void setup() {
     t.getCaptionLabel().getStyle().backgroundWidth = 10;
     t.getCaptionLabel().getStyle().backgroundHeight = 13;
   };
-  
+
   //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
     .setRange(1, 10)
@@ -109,7 +110,7 @@ void setup() {
     .setGroup(g1)
     .setLabel("Limite ventanas");
   ;
-  
+
   scalaKnob = cp5.addKnob("scalaKnob")
     .setRange(1, 10)
     .setValue(4)
@@ -151,7 +152,7 @@ void setup() {
   ;
 
   porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
-    .setRange(10, 100)
+    .setRange(1, 100)
     .setValue(30)
     .setPosition(180, 160)
     .setRadius(30)
@@ -163,6 +164,7 @@ void setup() {
     .setLabel("Porcentaje aleatorio");
   ;
 
+  //Toogles 
   cp5.addToggle("toggleScala")
     .setPosition(20, 300)
     .setSize(50, 20)
@@ -171,14 +173,23 @@ void setup() {
     .setGroup(g1)
     .setLabel("Scala");
   ;
-  
-    cp5.addToggle("toggleGirosImpares")
+
+  cp5.addToggle("toggleGirosImpares")
     .setPosition(100, 300)
     .setSize(50, 20)
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Giros impares");
+  ;
+
+  cp5.addToggle("toggleKiller")
+    .setPosition(180, 300)
+    .setSize(50, 20)
+    .setValue(true)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Modo Killer");
   ;
 
   cp5.addToggle("toggleTrama")
@@ -202,7 +213,7 @@ void setup() {
   cp5.addToggle("toggleRandom")
     .setPosition(180, 350)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Quitar Random");
@@ -225,7 +236,10 @@ void draw() {
   }
 
   if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
+    println("toogle random");
     moviR=1-2*int(random(-1, 2));
+  } else {
+    println("no toogle");
   }
 
   movi+=10*moviR*velocidad;
@@ -275,6 +289,10 @@ public void toggleScala(boolean value) {
 
 public void toggleGirosImpares(boolean value) {
   toggleGirosImpares = value;
+}
+
+public void toggleKiller(boolean value) {
+  toggleKiller = value;
 }
 
 public void toggleTrama(boolean value) {
