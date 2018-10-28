@@ -44,20 +44,23 @@ public int rotateWorldValue = 0;
 
 
 void setup() {
+  String[] filenames = listFileNames(sketchPath("data"));
+  myImageArray = new PImage[filenames.length];
+  println(colorValorArray);
   
   int movidass = (colorValorArray == 55 ? 0 : colorValorArray);
-  
+
   listacolores = new color[3];
   listacolores[0] = color(255, 196, 4); //horia
   listacolores[1] = color(252, 13, 17); //gorria
   listacolores[2] = color(253, 81, 191); //larrosa
+
   colorDefecto = listacolores[movidass];
 
-  //listFileNames
-  String[] filenames = listFileNames(sketchPath("data"));
-  myImageArray = new PImage[filenames.length];
+
 
   fullScreen();
+
   if (!toggleTrama) {
     background(colorDefecto);
   }
@@ -80,15 +83,11 @@ void setup() {
     generate();
   }
 
-
   recursionLevel();
-
   for (int i=0; i<myImageArray.length; i++) {
-
     myImageArray[i]=loadImage("data/" + filenames[i]);
   }
-Gui();
-
+  Gui();
 }
 
 void draw() {
@@ -114,19 +113,20 @@ void draw() {
   if (movi<-200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
     moviR=-moviR;
   }
+
   popMatrix();
   rotarGeneral += rotateWorldValue;
-
-
-  if (toggleFondo) {
+        if (!toggleFondo) {  
     pushStyle();
     blendMode(NORMAL);
     noStroke();
-    fill(255, 196, 4, 20); //horia
+    fill(255, 196, 4); //horia
     rect(0, 0, width, height );
     popStyle();
   }
- 
+
+
+
   //salvarJPG();
 }
 

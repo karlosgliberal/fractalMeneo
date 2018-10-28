@@ -1,5 +1,5 @@
-  void Gui(){
-  
+void Gui() {
+
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
     .setPosition(10, 490)
@@ -182,10 +182,10 @@
     .setGroup(g1)
     .setLabel("Quitar Random");
   ;
-  }
-  
-  
-  public void limitesVentanaKnob(int value) {
+}
+
+
+public void limitesVentanaKnob(int value) {
   multiplicadorlimitesVentana = value;
 }
 
@@ -232,27 +232,6 @@ public void toggleRandom(boolean value) {
   toggleRandom = value;
 }
 
-//public void horia(int value) {
-//  colorDefecto = listacolores[value];
-//}
-
-//public void gorria(int value) {
-//  colorDefecto = listacolores[value];
-//}
-
-//public void larrosa(int value) {
-//  cambioFondo(value);
-//}
-
-//void cambioFondo(int value) {
-//  println("cambio");
-//  colorDefecto = listacolores[value];
-//  if (!toggleFondo) {
-//    println("cambio dentro");
-//    //setup();
-//  }
-//}
-
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(r1)) {
     recursionLevel = (int) theEvent.getValue();
@@ -261,30 +240,19 @@ void controlEvent(ControlEvent theEvent) {
     cp5.show();
   }
   if (theEvent.isFrom(horia)) {
-    int movida = (int) theEvent.getValue();
-    colorDefecto = listacolores[movida];
-    if (!toggleFondo) {
-      setup();
-    }
+    cambioColoresFondo((int) theEvent.getValue());
   }
   if (theEvent.isFrom(gorria)) {
-    int movida = (int) theEvent.getValue();
-    println(movida);
-    colorDefecto = listacolores[movida];
-    if (!toggleFondo) {
-      setup();
-    }
+    cambioColoresFondo((int) theEvent.getValue());
   }  
   if (theEvent.isFrom(larrosa)) {
-    int movida = (int) theEvent.getValue();
-    colorValorArray = movida;
-    colorDefecto = listacolores[movida];
-    if (!toggleFondo) {
-      setup();
-    }
+    cambioColoresFondo((int) theEvent.getValue());
   }
+}
 
-  //if(theEvent.isFrom()){
-  //  println(theEvent.getValue());
-  //}
+void cambioColoresFondo(int valorColor) {
+  if (!toggleFondo) {
+    colorValorArray = valorColor;
+    setup();
+  }
 }
