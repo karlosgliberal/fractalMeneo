@@ -76,7 +76,9 @@ class KochLine {
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
     if (debug == 0) {
-      rotate(radians(movi)*rotateNeg);
+      if(toggleSoloTranslate){
+        rotate(radians(movi)*rotateNeg);
+      }
     }
 
     //slider para controlar el alfa del tint

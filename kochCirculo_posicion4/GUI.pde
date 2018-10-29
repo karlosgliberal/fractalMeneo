@@ -191,6 +191,15 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Translate");
   ;
+  
+    cp5.addToggle("toggleSoloTranslate")
+    .setPosition(100, 400)
+    .setSize(50, 20)
+    .setValue(true)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Solo Translate");
+  ;
 
 }
 
@@ -244,6 +253,10 @@ public void toggleRandom(boolean value) {
 
 public void toggleTranslate(boolean value) {
   toggleTranslate = value;
+}
+
+public void toggleSoloTranslate(boolean value) {
+  toggleSoloTranslate = value;
 }
 
 void controlEvent(ControlEvent theEvent) {

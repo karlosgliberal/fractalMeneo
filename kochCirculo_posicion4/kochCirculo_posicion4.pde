@@ -30,6 +30,7 @@ boolean toggleScala = true;
 boolean toggleGirosImpares = true;
 boolean toggleKiller = false;
 boolean toggleTranslate = false;
+boolean toggleSoloTranslate = false;
 
 ControlP5 cp5;
 CheckBox checkbox;
