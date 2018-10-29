@@ -47,7 +47,7 @@ void setup() {
   String[] filenames = listFileNames(sketchPath("data"));
   myImageArray = new PImage[filenames.length];
   println(colorValorArray);
-  
+
   int movidass = (colorValorArray == 55 ? 0 : colorValorArray);
 
   listacolores = new color[3];
@@ -55,7 +55,7 @@ void setup() {
   listacolores[1] = color(252, 13, 17); //gorria
   listacolores[2] = color(253, 81, 191); //larrosa
 
-  colorDefecto = listacolores[movidass];
+  colorDefecto = listacolores[1];
 
 
 
@@ -115,15 +115,17 @@ void draw() {
   }
 
   popMatrix();
-  rotarGeneral += rotateWorldValue;
-        if (!toggleFondo) {  
+  
+    if (!toggleFondo) {  
     pushStyle();
     blendMode(NORMAL);
     noStroke();
-    fill(255, 196, 4); //horia
+    fill(colorDefecto); //horia
     rect(0, 0, width, height );
     popStyle();
   }
+
+  rotarGeneral += rotateWorldValue;
 
 
 
