@@ -29,7 +29,7 @@ boolean toggleRandom = false;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
 boolean toggleKiller = false;
-boolean toggleTranslate = false;
+boolean toggleTranslate = true;
 boolean toggleSoloTranslate = false;
 
 ControlP5 cp5;

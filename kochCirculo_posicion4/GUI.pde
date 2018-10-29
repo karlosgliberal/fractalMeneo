@@ -186,7 +186,7 @@ void Gui() {
   cp5.addToggle("toggleTranslate")
     .setPosition(20, 400)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Translate");
