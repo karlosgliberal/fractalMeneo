@@ -24,7 +24,7 @@ int colorValorArray = 55;
 boolean gui; 
 
 boolean toggleTrama = true;
-boolean toggleFondo = true;
+boolean toggleFondo = false;
 boolean toggleRandom = false;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
@@ -55,7 +55,7 @@ void setup() {
   listacolores[1] = color(252, 13, 17); //gorria
   listacolores[2] = color(253, 81, 191); //larrosa
 
-  colorDefecto = listacolores[1];
+  colorDefecto = listacolores[movidass];
 
 
 
@@ -120,7 +120,7 @@ void draw() {
     pushStyle();
     blendMode(NORMAL);
     noStroke();
-    fill(colorDefecto); //horia
+    fill(colorDefecto, 20); //horia
     rect(0, 0, width, height );
     popStyle();
   }
