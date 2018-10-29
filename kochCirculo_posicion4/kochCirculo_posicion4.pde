@@ -20,7 +20,7 @@ float scalaVentana = 0.4;
 IntList recursionLevelList;
 color[] listacolores;
 color colorDefecto;
-int colorValorArray = 55;
+int valorColorInit = 55;
 boolean gui; 
 
 boolean toggleTrama = true;
@@ -29,6 +29,7 @@ boolean toggleRandom = false;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
 boolean toggleKiller = false;
+boolean toggleTranslate = false;
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -46,18 +47,14 @@ public int rotateWorldValue = 0;
 void setup() {
   String[] filenames = listFileNames(sketchPath("data"));
   myImageArray = new PImage[filenames.length];
-  println(colorValorArray);
 
-  int movidass = (colorValorArray == 55 ? 0 : colorValorArray);
+  int valorInit = (valorColorInit == 55 ? 0 : valorColorInit);
 
   listacolores = new color[3];
   listacolores[0] = color(255, 196, 4); //horia
   listacolores[1] = color(252, 13, 17); //gorria
   listacolores[2] = color(253, 81, 191); //larrosa
-
-  colorDefecto = listacolores[movidass];
-
-
+  colorDefecto = listacolores[valorInit];
 
   fullScreen();
 
@@ -126,8 +123,6 @@ void draw() {
   }
 
   rotarGeneral += rotateWorldValue;
-
-
 
   //salvarJPG();
 }

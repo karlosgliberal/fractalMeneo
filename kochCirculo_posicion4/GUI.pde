@@ -2,9 +2,9 @@ void Gui() {
 
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
-    .setPosition(10, 490)
+    .setPosition(10, 400)
     .setWidth(260)
-    .setBackgroundHeight(400)
+    .setBackgroundHeight(500)
     .setBackgroundColor(color(5, 70))
     .setLabel("Controles")
     ;
@@ -182,6 +182,16 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Quitar Random");
   ;
+  
+  cp5.addToggle("toggleTranslate")
+    .setPosition(20, 400)
+    .setSize(50, 20)
+    .setValue(true)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Translate");
+  ;
+
 }
 
 
@@ -232,6 +242,10 @@ public void toggleRandom(boolean value) {
   toggleRandom = value;
 }
 
+public void toggleTranslate(boolean value) {
+  toggleTranslate = value;
+}
+
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(r1)) {
     recursionLevel = (int) theEvent.getValue();
@@ -252,7 +266,7 @@ void controlEvent(ControlEvent theEvent) {
 
 void cambioColoresFondo(int valorColor) {
   if (!toggleFondo) {
-    colorValorArray = valorColor;
+    valorColorInit = valorColor;
     setup();
   }
 }

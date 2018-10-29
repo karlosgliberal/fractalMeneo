@@ -65,7 +65,12 @@ class KochLine {
     //rotate(radians(movi)*rotateNeg);
 
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
+    
+    if(toggleTranslate){
+    translate(0,movi);
+    } else {
     translate(0, movi/recursionValue);
+    }
 
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
