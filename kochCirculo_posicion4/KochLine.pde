@@ -2,6 +2,8 @@ class KochLine {
   PVector start;
   PVector end;
   int recursionValue;
+  float startAngleWave = 0;
+  float angleVelWave = 0.4;
 
   //variables Anim
   int rotateNeg =1;
@@ -53,7 +55,7 @@ class KochLine {
       if (recursionValue % 2 == 0) {
         rotateNeg=-1;
       }
-    }else{
+    } else {
       rotateNeg=1;
     }
 
@@ -62,21 +64,41 @@ class KochLine {
     //Este rotate para que este antes o después del translate
     //Añadir un multiplicador random de dirección (ON/OFF y slider para elegir cada cuanto lo hace) *y lo mismo en el rotate de abajo ;)
 
-    //rotate(radians(movi)*rotateNeg);
-
+    if (toggleGirosConGracia) {
+      rotate(radians(movi)*rotateNeg);
+    }
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
-    
-    if(toggleTranslate){
-    translate(0,movi);
+
+    if (togglePendulo) {
+      float period = 100;
+      float amplitude =100;
+      pendulo = amplitude * sin(TWO_PI * frameCount / period); 
+      pendulo = pendulo* 0.05;
+      translate(0, movi/recursionValue*pendulo);
+    }
+
+    if (toggleWave) {
+      startAngleWave += 0.015;
+      float angle = startAngleWave;
+
+      for (int x = 0; x <= width; x += 24) {
+        float y = map(sin(angle), -1, 1, 0, height);
+        angle += angleVelWave;
+        translate(0, angle);
+      }
+    }
+
+    if (toggleTranslate) {
+      translate(0, movi);
     } else {
-    translate(0, movi/recursionValue);
+      translate(0, movi/recursionValue);
     }
 
 
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
     if (debug == 0) {
-      if(toggleSoloTranslate){
+      if (toggleSoloTranslate) {
         rotate(radians(movi)*rotateNeg);
       }
     }
@@ -85,10 +107,10 @@ class KochLine {
     tint(255, 255); 
 
     //REPLACE si le queremos meter rollo killer que se recorta. Prescindible.
-    if(!toggleKiller){
+    if (!toggleKiller) {
       blendMode(REPLACE);
     }
-    
+
 
     imageMode(CENTER); 
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 

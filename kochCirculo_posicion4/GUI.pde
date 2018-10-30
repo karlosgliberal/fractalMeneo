@@ -182,7 +182,7 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Quitar Random");
   ;
-  
+
   cp5.addToggle("toggleTranslate")
     .setPosition(20, 400)
     .setSize(50, 20)
@@ -191,8 +191,8 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Translate");
   ;
-  
-    cp5.addToggle("toggleSoloTranslate")
+
+  cp5.addToggle("toggleSoloTranslate")
     .setPosition(100, 400)
     .setSize(50, 20)
     .setValue(true)
@@ -201,6 +201,32 @@ void Gui() {
     .setLabel("Solo Translate");
   ;
 
+  cp5.addToggle("toggleGirosConGracia")
+    .setPosition(180, 400)
+    .setSize(50, 20)
+    .setValue(true)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Giros con Gracia");
+  ;
+  
+    cp5.addToggle("togglePendulo")
+    .setPosition(20, 450)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Pendulo");
+  ;
+  
+      cp5.addToggle("toggleWave")
+    .setPosition(100, 450)
+    .setSize(50, 20)
+    .setValue(false)
+    .setMode(ControlP5.SWITCH)
+    .setGroup(g1)
+    .setLabel("Wave");
+  ;
 }
 
 
@@ -257,6 +283,18 @@ public void toggleTranslate(boolean value) {
 
 public void toggleSoloTranslate(boolean value) {
   toggleSoloTranslate = value;
+}
+
+public void toggleGirosConGracia(boolean value) {
+  toggleGirosConGracia = value;
+}
+
+public void toggleGirosPendulo(boolean value) {
+  togglePendulo = value;
+}
+
+public void toggleWave(boolean value) {
+  toggleWave = value;
 }
 
 void controlEvent(ControlEvent theEvent) {

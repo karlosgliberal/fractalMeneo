@@ -21,6 +21,7 @@ IntList recursionLevelList;
 color[] listacolores;
 color colorDefecto;
 int valorColorInit = 55;
+float pendulo = 0;
 boolean gui; 
 boolean save;
 
@@ -32,6 +33,11 @@ boolean toggleGirosImpares = true;
 boolean toggleKiller = false;
 boolean toggleTranslate = true;
 boolean toggleSoloTranslate = false;
+boolean toggleGirosConGracia = false;
+boolean togglePendulo = false;
+boolean toggleWave = false;
+
+
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -109,7 +115,7 @@ void draw() {
   } 
 
   movi+=10*moviR*velocidad;
-  if (movi<-200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
+  if (movi< -200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
     moviR=-moviR;
   }
 
