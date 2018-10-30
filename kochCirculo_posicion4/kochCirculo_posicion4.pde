@@ -22,6 +22,7 @@ color[] listacolores;
 color colorDefecto;
 int valorColorInit = 55;
 boolean gui; 
+boolean save;
 
 boolean toggleTrama = true;
 boolean toggleFondo = false;
@@ -113,8 +114,8 @@ void draw() {
   }
 
   popMatrix();
-  
-    if (!toggleFondo) {  
+
+  if (!toggleFondo) {  
     pushStyle();
     blendMode(NORMAL);
     noStroke();
@@ -124,8 +125,10 @@ void draw() {
   }
 
   rotarGeneral += rotateWorldValue;
-
-  //salvarJPG();
+  if(save){
+    salvarJPG();
+  }
+  
 }
 
 //function to get all files in the data folder
@@ -209,6 +212,15 @@ void keyPressed() {
     if (gui ^= true) {
       noCursor();
       cp5.hide();
+    } else {
+      cp5.show();
+      cursor();
+    }
+  } else if (key == 's') {
+    if (save ^= true) {
+      noCursor();
+      cp5.hide();
+      salvarJPG();
     } else {
       cp5.show();
       cursor();
