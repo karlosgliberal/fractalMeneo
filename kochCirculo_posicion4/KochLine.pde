@@ -2,8 +2,7 @@ class KochLine {
   PVector start;
   PVector end;
   int recursionValue;
-  float startAngleWave = 0;
-  float angleVelWave = 0.4;
+
 
   //variables Anim
   int rotateNeg =1;
@@ -78,14 +77,7 @@ class KochLine {
     }
 
     if (toggleWave) {
-      startAngleWave += 0.015;
-      float angle = startAngleWave;
 
-      for (int x = 0; x <= width; x += 24) {
-        float y = map(sin(angle), -1, 1, 0, height);
-        angle += angleVelWave;
-        translate(0, angle);
-      }
     }
 
     if (toggleTranslate) {
