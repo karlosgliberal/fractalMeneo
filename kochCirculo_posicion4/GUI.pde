@@ -82,7 +82,6 @@ void Gui() {
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(1)
-    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Multiplicador scala");
@@ -234,7 +233,7 @@ public void limitesVentanaKnob(int value) {
   multiplicadorlimitesVentana = value;
 }
 
-public void scalaKnob(int value) { 
+public void scalaKnob(float value) { 
   scalaVentana = value * 0.1;
 }
 
