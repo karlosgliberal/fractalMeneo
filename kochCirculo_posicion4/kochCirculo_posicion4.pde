@@ -125,13 +125,13 @@ void draw() {
   popMatrix();
 
   if (toggleFondo) {  
-//    pushStyle();
+    //    pushStyle();
     //este blendMode no hacía nada
     //blendMode(NORMAL);
     noStroke();
     fill(colorDefecto, 20);
     rect(0, 0, width, height );
-  //  popStyle();
+    //  popStyle();
   }
 
   rotarGeneral += rotateWorldValue;
@@ -221,6 +221,7 @@ void keyPressed() {
     if (gui ^= true) {
       noCursor();
       cp5.hide();
+      limpiarGUI();
     } else {
       cp5.show();
       cursor();
@@ -229,10 +230,17 @@ void keyPressed() {
     if (save ^= true) {
       noCursor();
       cp5.hide();
+      limpiarGUI();
       salvarTGA();
     } else {
       cp5.show();
       cursor();
     }
   }
+}
+
+void limpiarGUI() {
+  noStroke();
+  fill(colorDefecto);
+  rect(10, height-10-500-10, 260, 500+10);
 }
