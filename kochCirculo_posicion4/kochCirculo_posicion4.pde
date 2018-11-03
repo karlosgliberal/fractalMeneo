@@ -37,7 +37,9 @@ boolean toggleGirosConGracia = false;
 boolean togglePendulo = false;
 //boolean toggleWave = false;
 
+boolean mostrarAbout = false;
 
+PFont exoLight;
 
 ControlP5 cp5;
 CheckBox checkbox;
@@ -61,6 +63,8 @@ void setup() {
   myImageArray = new PImage[filenames.length];
 
   int valorInit = (valorColorInit == 55 ? 0 : valorColorInit);
+
+  exoLight=loadFont("font/Exo2.0-Light-15.vlw");
 
   listacolores = new color[3];
   listacolores[0] = color(255, 196, 4); //horia
@@ -142,6 +146,8 @@ void draw() {
   if (save) {
     salvarTGA();
   }
+
+  about();
 }
 
 //function to get all files in the data folder
@@ -260,6 +266,8 @@ void keyPressed() {
     toggleGirosConGracia =!toggleGirosConGracia;
   } else if (key == 'p') {
     togglePendulo =!togglePendulo;
+  } else if (key == 'a') {
+    mostrarAbout =!mostrarAbout;
   }
 }
 
@@ -267,4 +275,32 @@ void limpiarGUI() {
   noStroke();
   fill(colorDefecto);
   rect(10, height-10-500-10, 270, 500+10);
+}
+
+void about() {
+  if (mostrarAbout) {
+
+    int anchoCaja = 440;
+    int altoCaja = 180;
+    
+    pushMatrix();
+    translate(width/2-anchoCaja/2, height/2-altoCaja/2);
+
+    pushStyle();
+    noStroke();
+    fill(0, 150);
+    rect(0, 0, anchoCaja, altoCaja);
+
+    fill(255);
+    textAlign(CENTER);
+    textFont(exoLight);
+    textSize(15);
+    text("Herramienta realizada por", anchoCaja/2, 40);
+    text("Karlos G. Liberal aka Patxangas y Martin Etxauri aka Txo!?", anchoCaja/2, 65);
+    text("Para el proyecto MENEO de Marisa Mantxola", anchoCaja/2, 100);
+    text("Licencia MIT ;D", anchoCaja/2, 150);
+
+    popMatrix();
+    popStyle();
+  }
 }

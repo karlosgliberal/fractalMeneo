@@ -253,6 +253,11 @@ void Gui() {
     .setPosition(10, 465)
     .setGroup(g1)
     ;
+    notaKeys = cp5.addTextlabel("notaKeysLinea3")
+    .setText("A = About")
+    .setPosition(10, 480)
+    .setGroup(g1)
+    ;
 }
 
 
