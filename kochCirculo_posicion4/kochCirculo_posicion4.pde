@@ -66,9 +66,10 @@ void setup() {
 
   fullScreen(P2D);
 
-  if (!toggleTrama) {
-    background(colorDefecto);
-  }
+  //aquí no hace falta quitar o poner el fondo puede estar siempre, de hecho creo que no hacía nada
+  //  if (!toggleTrama) {
+  background(colorDefecto);
+  //}
 
   frameRate(25);
   int dimensions = height/2-height/20;
@@ -124,17 +125,18 @@ void draw() {
   popMatrix();
 
   if (toggleFondo) {  
-    pushStyle();
-//    blendMode(NORMAL);
+//    pushStyle();
+    //este blendMode no hacía nada
+    //blendMode(NORMAL);
     noStroke();
     fill(colorDefecto, 20);
     rect(0, 0, width, height );
-    popStyle();
+  //  popStyle();
   }
 
   rotarGeneral += rotateWorldValue;
   if (save) {
-    salvarJPG();
+    salvarTGA();
   }
 }
 
@@ -227,7 +229,7 @@ void keyPressed() {
     if (save ^= true) {
       noCursor();
       cp5.hide();
-      salvarJPG();
+      salvarTGA();
     } else {
       cp5.show();
       cursor();

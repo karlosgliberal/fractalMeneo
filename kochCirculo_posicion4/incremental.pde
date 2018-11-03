@@ -1,5 +1,5 @@
-void salvarJPG() {
-  String nombre = getIncrementalFilename("out/meneo_#####.jpg");
+void salvarTGA() {
+  String nombre = getIncrementalFilename("out/meneo_#####.tga");
   saveFrame(nombre);
 
 }
