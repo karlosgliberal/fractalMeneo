@@ -103,11 +103,11 @@ void Gui() {
   ;
 
   rotateWorld = cp5.addKnob("rotateWorld")
-    .setRange(0, 40)
+    .setRange(0, 30)
     .setValue(0)
     .setPosition(100, 160)
     .setRadius(30)
-    .setNumberOfTickMarks(20)
+    .setNumberOfTickMarks(30)
     .setTickMarkLength(2)
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
@@ -171,7 +171,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Fondo (x trazo)");
+    .setLabel("Limpiar Trazo)");
   ;
 
   cp5.addToggle("toggleRandom")

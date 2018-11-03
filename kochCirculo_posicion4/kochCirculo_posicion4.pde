@@ -103,7 +103,7 @@ void draw() {
     background(colorDefecto);
   }
 
-  rotate(radians(rotarGeneral));
+  rotate(radians(rotarGeneral/2));
 
   pushStyle();
   for (int i= 0; i < lines.size(); i++) {
@@ -119,7 +119,6 @@ void draw() {
   movi+=10*moviR*velocidad;
   if (movi< -200 + multiplicadorlimitesVentana*40 || movi> 700 - multiplicadorlimitesVentana*40) {
     moviR=-moviR;
-    println(-200 + multiplicadorlimitesVentana*40, "//",700 - multiplicadorlimitesVentana*40);
   }
 
   popMatrix();
