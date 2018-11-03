@@ -70,7 +70,7 @@ class KochLine {
 
     if (togglePendulo) {
       float period = 100;
-      float amplitude =10;
+      float amplitude =100;
       pendulo = amplitude * sin(TWO_PI * frameCount / period); 
       pendulo = pendulo* 0.05;
       translate(0, movi/recursionValue*pendulo);
