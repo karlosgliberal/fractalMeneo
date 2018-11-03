@@ -240,11 +240,31 @@ void keyPressed() {
       cp5.show();
       cursor();
     }
+  } else if (key == 'e') {
+    toggleScala =!toggleScala;
+    //intentando pasar el valor al voide de los controles para ver si se actualiza la UI, pero no :( 
+    //toggleScala(toggleScala);
+  } else if (key == 'g') {
+    toggleGirosImpares =!toggleGirosImpares;
+  } else if (key == 't') {
+    toggleTrama =!toggleTrama;
+  } else if (key == 'l') {
+    toggleFondo =!toggleFondo;
+  } else if (key == 'v') {
+    toggleRandom =!toggleRandom;
+  } else if (key == 'm') {
+    toggleTranslate =!toggleTranslate;
+  } else if (key == 'r') {
+    toggleSoloTranslate =!toggleSoloTranslate;
+  } else if (key == 'c') {
+    toggleGirosConGracia =!toggleGirosConGracia;
+  } else if (key == 'p') {
+    togglePendulo =!togglePendulo;
   }
 }
 
 void limpiarGUI() {
   noStroke();
   fill(colorDefecto);
-  rect(10, height-10-500-10, 260, 500+10);
+  rect(10, height-10-500-10, 270, 500+10);
 }

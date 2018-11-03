@@ -3,9 +3,9 @@ void Gui() {
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
     .setPosition(10, height-10-500)
-    .setWidth(260)
+    .setWidth(270)
     .setBackgroundHeight(500)
-    .setBackgroundColor(color(5, 70))
+    .setBackgroundColor(color(5, 120))
     .setLabel("Controles")
     ;
 
@@ -132,10 +132,10 @@ void Gui() {
   cp5.addToggle("toggleScala")
     .setPosition(20, 300)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(toggleScala)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Escala");
+    .setLabel("Escala - e");
   ;
 
   cp5.addToggle("toggleGirosImpares")
@@ -144,7 +144,7 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Giro Impares");
+    .setLabel("Giro Impares - g");
   ;
   /*
   cp5.addToggle("toggleKiller")
@@ -162,7 +162,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Trazo");
+    .setLabel("Trazo - t");
   ;
 
   cp5.addToggle("toggleFondo")
@@ -171,7 +171,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Limpiar Trazo)");
+    .setLabel("Limpiar Trazo - l ");
   ;
 
   cp5.addToggle("toggleRandom")
@@ -180,7 +180,7 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Vaiven Random");
+    .setLabel("Vaiven Random - v");
   ;
 
   cp5.addToggle("toggleTranslate")
@@ -189,7 +189,7 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Translate");
+    .setLabel("Translate - m");
   ;
 
   cp5.addToggle("toggleSoloTranslate")
@@ -198,7 +198,7 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Rotacion");
+    .setLabel("Rotacion - r");
   ;
 
   cp5.addToggle("toggleGirosConGracia")
@@ -207,7 +207,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Giro con Gracia");
+    .setLabel("Giro con Gracia - c");
   ;
 
   cp5.addToggle("togglePendulo")
@@ -217,7 +217,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Pendulo");
+    .setLabel("Pendulo - p");
   ;
   /*
   cp5.addToggle("toggleWave")
