@@ -2,7 +2,7 @@ void Gui() {
 
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
-    .setPosition(10, 400)
+    .setPosition(10, height-10-500)
     .setWidth(260)
     .setBackgroundHeight(500)
     .setBackgroundColor(color(5, 70))
@@ -12,7 +12,8 @@ void Gui() {
   r1 = cp5.addRadioButton("NivelRecursion")
     .setPosition(20, 20)
     .setSize(20, 20)
-    .setColorForeground(color(120))
+    .setColorForeground(color(255,120))
+    .setColorActive(color(255,0,0)) //Creo que no se nos marca el activo porque vamos a setup y no le pasamos el palor a la UI
     .setItemsPerRow(5)
     .setSpacingColumn(10)
     .addItem("0", 0)
@@ -63,12 +64,12 @@ void Gui() {
 
   //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
-    .setRange(1, 10)
+    .setRange(0, 10)
     .setValue(0)
     .setPosition(20, 60)
     .setRadius(30)
-    .setNumberOfTickMarks(10)
-    .setTickMarkLength(1)
+    .setNumberOfTickMarks(11)
+    .setTickMarkLength(2)
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
@@ -77,11 +78,11 @@ void Gui() {
 
   scalaKnob = cp5.addKnob("scalaKnob")
     .setRange(1, 10)
-    .setValue(4)
+    .setValue(3)
     .setPosition(100, 60)
     .setRadius(30)
     .setNumberOfTickMarks(10)
-    .setTickMarkLength(1)
+    .setTickMarkLength(2)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Multiplicador scala");
@@ -89,12 +90,12 @@ void Gui() {
 
 
   velocidadKnob = cp5.addKnob("velocidadKnob")
-    .setRange(0, 100)
-    .setValue(2)
+    .setRange(0, 150)
+    .setValue(45)
     .setPosition(20, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
-    .setTickMarkLength(5)
+    .setTickMarkLength(2)
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
@@ -120,7 +121,7 @@ void Gui() {
     .setPosition(180, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
-    .setTickMarkLength(5)
+    .setTickMarkLength(2)
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
@@ -131,25 +132,25 @@ void Gui() {
   cp5.addToggle("toggleScala")
     .setPosition(20, 300)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Scala");
+    .setLabel("Escala");
   ;
 
   cp5.addToggle("toggleGirosImpares")
     .setPosition(100, 300)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Giros impares");
+    .setLabel("Giro Impares");
   ;
 
   cp5.addToggle("toggleKiller")
     .setPosition(180, 300)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Modo Killer");
@@ -161,7 +162,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Trama");
+    .setLabel("Trazo");
   ;
 
   cp5.addToggle("toggleFondo")
@@ -170,7 +171,7 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Fondo");
+    .setLabel("Fondo (x trazo)");
   ;
 
   cp5.addToggle("toggleRandom")
@@ -179,13 +180,13 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Quitar Random");
+    .setLabel("Vaiven Random");
   ;
 
   cp5.addToggle("toggleTranslate")
     .setPosition(20, 400)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Translate");
@@ -197,19 +198,19 @@ void Gui() {
     .setValue(true)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Solo Translate");
+    .setLabel("Rotacion");
   ;
 
   cp5.addToggle("toggleGirosConGracia")
     .setPosition(180, 400)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Giros con Gracia");
   ;
-  
-    cp5.addToggle("togglePendulo")
+
+  cp5.addToggle("togglePendulo")
     .setPosition(20, 450)
     .setSize(50, 20)
     .setValue(false)
@@ -217,8 +218,8 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Pendulo");
   ;
-  
-      cp5.addToggle("toggleWave")
+
+  cp5.addToggle("toggleWave")
     .setPosition(100, 450)
     .setSize(50, 20)
     .setValue(false)

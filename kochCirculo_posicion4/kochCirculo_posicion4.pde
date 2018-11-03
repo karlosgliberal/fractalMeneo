@@ -14,8 +14,8 @@ float velocidad=10;
 float rotarGeneral=2;
 int recursionLevel = 2;
 int lineFracture = 3;
-int porcentajeAleatorio = 10;
-int multiplicadorlimitesVentana = 1;
+int porcentajeAleatorio = 25;
+int multiplicadorlimitesVentana = 0;
 float scalaVentana = 0.4;
 IntList recursionLevelList;
 color[] listacolores;
@@ -25,9 +25,9 @@ float pendulo = 0;
 boolean gui; 
 boolean save;
 
-boolean toggleTrama = true;
+boolean toggleTrama = false;
 boolean toggleFondo = false;
-boolean toggleRandom = false;
+boolean toggleRandom = true;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
 boolean toggleKiller = false;
@@ -64,7 +64,7 @@ void setup() {
   listacolores[2] = color(253, 81, 191); //larrosa
   colorDefecto = listacolores[valorInit];
 
-  fullScreen();
+  fullScreen(P2D);
 
   if (!toggleTrama) {
     background(colorDefecto);
@@ -105,36 +105,38 @@ void draw() {
 
   rotate(radians(rotarGeneral));
 
+  pushStyle();
   for (int i= 0; i < lines.size(); i++) {
     KochLine l = lines.get(i);
     l.display(i);
   }
+  popStyle();
 
   if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
     moviR=1-2*int(random(-1, 2));
   } 
 
   movi+=10*moviR*velocidad;
-  if (movi< -200 / multiplicadorlimitesVentana || movi>700 / multiplicadorlimitesVentana) {
+  if (movi< -200 + multiplicadorlimitesVentana*40 || movi> 700 - multiplicadorlimitesVentana*40) {
     moviR=-moviR;
+    println(-200 + multiplicadorlimitesVentana*40, "//",700 - multiplicadorlimitesVentana*40);
   }
 
   popMatrix();
 
-  if (!toggleFondo) {  
+  if (toggleFondo) {  
     pushStyle();
-    blendMode(NORMAL);
+//    blendMode(NORMAL);
     noStroke();
-    fill(colorDefecto, 20); //horia
+    fill(colorDefecto, 20);
     rect(0, 0, width, height );
     popStyle();
   }
 
   rotarGeneral += rotateWorldValue;
-  if(save){
+  if (save) {
     salvarJPG();
   }
-  
 }
 
 //function to get all files in the data folder

@@ -41,7 +41,7 @@ class KochLine {
 
     //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
     //y el propio multiplicador - Molaría botón para que sea 1 exactamente.
-    if (!toggleScala) {
+    if (toggleScala) {
       scale(recursionValue*scalaVentana);
     }
 
@@ -50,7 +50,7 @@ class KochLine {
 
     //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
     //Habría que poder activar y desactivar
-    if (!toggleGirosImpares) {
+    if (toggleGirosImpares) {
       if (recursionValue % 2 == 0) {
         rotateNeg=-1;
       }
@@ -70,7 +70,7 @@ class KochLine {
 
     if (togglePendulo) {
       float period = 100;
-      float amplitude =100;
+      float amplitude =10;
       pendulo = amplitude * sin(TWO_PI * frameCount / period); 
       pendulo = pendulo* 0.05;
       translate(0, movi/recursionValue*pendulo);
@@ -91,7 +91,7 @@ class KochLine {
     //gira con radio "movie" y también es interesante
     if (debug == 0) {
       if (toggleSoloTranslate) {
-        rotate(radians(movi)*rotateNeg);
+        rotate(radians(movi-100)*rotateNeg);
       }
     }
 
@@ -99,10 +99,9 @@ class KochLine {
     tint(255, 255); 
 
     //REPLACE si le queremos meter rollo killer que se recorta. Prescindible.
-    if (!toggleKiller) {
+    if (toggleKiller) {
       blendMode(REPLACE);
     }
-
 
     imageMode(CENTER); 
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 
