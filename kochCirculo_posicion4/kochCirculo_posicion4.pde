@@ -30,12 +30,12 @@ boolean toggleFondo = false;
 boolean toggleRandom = true;
 boolean toggleScala = true;
 boolean toggleGirosImpares = true;
-boolean toggleKiller = false;
+//boolean toggleKiller = false;
 boolean toggleTranslate = true;
 boolean toggleSoloTranslate = false;
 boolean toggleGirosConGracia = false;
 boolean togglePendulo = false;
-boolean toggleWave = false;
+//boolean toggleWave = false;
 
 
 
@@ -50,6 +50,10 @@ RadioButton r1, r2;
 Bang horia, gorria, larrosa;
 public int debug = 0;
 public int rotateWorldValue = 0;
+
+//textos sueltos
+Textlabel notaRecarga, notaKeys;
+
 
 
 void setup() {

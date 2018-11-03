@@ -76,9 +76,8 @@ class KochLine {
       translate(0, movi/recursionValue*pendulo);
     }
 
-    if (toggleWave) {
-
-    }
+/*    if (toggleWave) {
+    }*/
 
     if (toggleTranslate) {
       translate(0, movi);
@@ -99,9 +98,9 @@ class KochLine {
     tint(255, 255); 
 
     //REPLACE si le queremos meter rollo killer que se recorta. Prescindible.
-    if (toggleKiller) {
-      blendMode(REPLACE);
-    }
+    /* if (toggleKiller) {
+     blendMode(REPLACE);
+     }*/
 
     imageMode(CENTER); 
     image(myImageArray[lineNum % myImageArray.length], 0, 0); 

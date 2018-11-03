@@ -12,8 +12,8 @@ void Gui() {
   r1 = cp5.addRadioButton("NivelRecursion")
     .setPosition(20, 20)
     .setSize(20, 20)
-    .setColorForeground(color(255,120))
-    .setColorActive(color(255,0,0)) //Creo que no se nos marca el activo porque vamos a setup y no le pasamos el palor a la UI
+    .setColorForeground(color(255, 120))
+    .setColorActive(color(255, 0, 0)) //Creo que no se nos marca el activo porque vamos a setup y no le pasamos el palor a la UI
     .setItemsPerRow(5)
     .setSpacingColumn(10)
     .addItem("0", 0)
@@ -125,7 +125,7 @@ void Gui() {
     .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
-    .setLabel("Porcentaje aleatorio");
+    .setLabel("Ciclo Aleatorio");
   ;
 
   //Toogles 
@@ -146,15 +146,15 @@ void Gui() {
     .setGroup(g1)
     .setLabel("Giro Impares");
   ;
-
+  /*
   cp5.addToggle("toggleKiller")
-    .setPosition(180, 300)
-    .setSize(50, 20)
-    .setValue(false)
-    .setMode(ControlP5.SWITCH)
-    .setGroup(g1)
-    .setLabel("Modo Killer");
-  ;
+   .setPosition(180, 300)
+   .setSize(50, 20)
+   .setValue(false)
+   .setMode(ControlP5.SWITCH)
+   .setGroup(g1)
+   .setLabel("Modo Killer");
+   ;*/
 
   cp5.addToggle("toggleTrama")
     .setPosition(20, 350)
@@ -175,7 +175,7 @@ void Gui() {
   ;
 
   cp5.addToggle("toggleRandom")
-    .setPosition(180, 350)
+    .setPosition(180, 300)
     .setSize(50, 20)
     .setValue(true)
     .setMode(ControlP5.SWITCH)
@@ -207,26 +207,52 @@ void Gui() {
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
-    .setLabel("Giros con Gracia");
+    .setLabel("Giro con Gracia");
   ;
 
   cp5.addToggle("togglePendulo")
-    .setPosition(20, 450)
+    //    .setPosition(20, 450)
+    .setPosition(180, 350)
     .setSize(50, 20)
     .setValue(false)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Pendulo");
   ;
-
+  /*
   cp5.addToggle("toggleWave")
-    .setPosition(100, 450)
-    .setSize(50, 20)
-    .setValue(false)
-    .setMode(ControlP5.SWITCH)
+   .setPosition(100, 450)
+   .setSize(50, 20)
+   .setValue(false)
+   .setMode(ControlP5.SWITCH)
+   .setGroup(g1)
+   .setLabel("Wave");
+   ;*/
+
+  //Textos sueltos
+  notaRecarga = cp5.addTextlabel("notaRecargaRecursion")
+    .setText("*recarga")
+    .setPosition(180, 25)
     .setGroup(g1)
-    .setLabel("Wave");
-  ;
+    ;
+
+  notaRecarga = cp5.addTextlabel("notaRegargaColores")
+    .setText("*recarga")
+    .setPosition(130, 255)
+    .setGroup(g1)
+    ;
+
+  notaKeys = cp5.addTextlabel("notaKeysLinea1")
+    .setText("1 = Guardar estado            2 = Cargar estado")
+    .setPosition(10, 450)
+    .setGroup(g1)
+    ;
+
+  notaKeys = cp5.addTextlabel("notaKeysLinea2")
+    .setText("3 = Ocultar controles      S = Grabar Frames")
+    .setPosition(10, 465)
+    .setGroup(g1)
+    ;
 }
 
 
@@ -258,15 +284,13 @@ public void toggleGirosImpares(boolean value) {
   toggleGirosImpares = value;
 }
 
+/*
 public void toggleKiller(boolean value) {
-  toggleKiller = value;
-}
+ toggleKiller = value;
+ }*/
 
 public void toggleTrama(boolean value) {
   toggleTrama = value;
-  //if (!value) {
-  //  cp5.hide();
-  //}
 }
 
 public void toggleFondo(boolean value) {
@@ -292,10 +316,10 @@ public void toggleGirosConGracia(boolean value) {
 public void toggleGirosPendulo(boolean value) {
   togglePendulo = value;
 }
-
+/*
 public void toggleWave(boolean value) {
-  toggleWave = value;
-}
+ toggleWave = value;
+ }*/
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(r1)) {
