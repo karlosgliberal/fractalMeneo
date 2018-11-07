@@ -57,7 +57,7 @@ Toggle toggleTrama, toggleFondo, toggleRandom, toggleScala, toggleGirosImpares, 
 
 //textos sueltos
 Textlabel notaKeys;
-//Textlabel notaRecarga, 
+Textlabel notaRecarga;
 
 
 void setup() {

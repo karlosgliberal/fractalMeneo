@@ -95,7 +95,7 @@ void Gui() {
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(2)
-//    .snapToTickMarks(true)
+    //    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("velocidad Movida");
@@ -108,7 +108,7 @@ void Gui() {
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(2)
-//    .snapToTickMarks(true)
+    //    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Rotar el mundo");
@@ -228,21 +228,20 @@ void Gui() {
    .setLabel("Wave");
    ;*/
 
-  //Estas notas de "*recarga" ya no hacen falta
-  /*  notaRecarga = cp5.addTextlabel("notaRecargaRecursion")
-   .setText("*recarga")
-   .setPosition(180, 25)
-   .setGroup(g1)
-   ;
-   
-   notaRecarga = cp5.addTextlabel("notaRegargaColores")
-   .setText("*recarga")
-   .setPosition(130, 255)
-   .setGroup(g1)
-   ;
-   */
 
   //Textos sueltos
+
+  notaRecarga = cp5.addTextlabel("notaRecargaRecursion")
+    .setText("*recarga")
+    .setPosition(180, 25)
+    .setGroup(g1)
+    ;
+
+  notaRecarga = cp5.addTextlabel("notaRegargaColores")
+    .setText("*recarga")
+    .setPosition(130, 255)
+    .setGroup(g1)
+    ;
 
   notaKeys = cp5.addTextlabel("notaKeysLinea1")
     .setText("1 = Guardar estado            2 = Cargar estado")
