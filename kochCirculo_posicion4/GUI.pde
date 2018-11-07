@@ -95,7 +95,7 @@ void Gui() {
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(2)
-    .snapToTickMarks(true)
+//    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("velocidad Movida");
@@ -106,22 +106,22 @@ void Gui() {
     .setValue(rotateWorldValue)
     .setPosition(100, 160)
     .setRadius(30)
-    .setNumberOfTickMarks(30)
+    .setNumberOfTickMarks(10)
     .setTickMarkLength(2)
-    .snapToTickMarks(true)
+//    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Rotar el mundo");
   ;
 
   porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
-    .setRange(1, 100)
+    .setRange(2, 100)
     .setValue(porcentajeAleatorio)
     .setPosition(180, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
     .setTickMarkLength(2)
-    .snapToTickMarks(true)
+    //    .snapToTickMarks(true)
     .setDragDirection(Knob.HORIZONTAL)
     .setGroup(g1)
     .setLabel("Ciclo Aleatorio");
