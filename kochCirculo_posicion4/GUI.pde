@@ -62,10 +62,9 @@ void Gui() {
     .setLabel("Horia")
     ;
 
-  //revisar no esta funcionando bien
   limitesVentanaKnob = cp5.addKnob("limitesVentanaKnob")
     .setRange(0, 10)
-    .setValue(0)
+    .setValue(multiplicadorlimitesVentana)
     .setPosition(20, 60)
     .setRadius(30)
     .setNumberOfTickMarks(11)
@@ -78,7 +77,7 @@ void Gui() {
 
   scalaKnob = cp5.addKnob("scalaKnob")
     .setRange(1, 10)
-    .setValue(3)
+    .setValue(scalaVentana)
     .setPosition(100, 60)
     .setRadius(30)
     .setNumberOfTickMarks(10)
@@ -91,7 +90,7 @@ void Gui() {
 
   velocidadKnob = cp5.addKnob("velocidadKnob")
     .setRange(0, 150)
-    .setValue(45)
+    .setValue(velocidad)
     .setPosition(20, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
@@ -104,7 +103,7 @@ void Gui() {
 
   rotateWorld = cp5.addKnob("rotateWorld")
     .setRange(0, 30)
-    .setValue(0)
+    .setValue(rotateWorldValue)
     .setPosition(100, 160)
     .setRadius(30)
     .setNumberOfTickMarks(30)
@@ -117,7 +116,7 @@ void Gui() {
 
   porcentajeAleatorioKnob = cp5.addKnob("porcentajeAleatorioKnob")
     .setRange(1, 100)
-    .setValue(30)
+    .setValue(porcentajeAleatorio)
     .setPosition(180, 160)
     .setRadius(30)
     .setNumberOfTickMarks(10)
@@ -129,7 +128,7 @@ void Gui() {
   ;
 
   //Toogles 
-toggleScala=cp5.addToggle("toggleScala")
+  toggleScala=cp5.addToggle("toggleScala")
     .setPosition(20, 300)
     .setSize(50, 20)
     .setValue(toggleScalaValue)
@@ -138,10 +137,10 @@ toggleScala=cp5.addToggle("toggleScala")
     .setLabel("Escala - e");
   ;
 
-toggleGirosImpares=cp5.addToggle("toggleGirosImpares")
+  toggleGirosImpares=cp5.addToggle("toggleGirosImpares")
     .setPosition(100, 300)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(toggleGirosImparesValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Giro Impares - g");
@@ -156,10 +155,10 @@ toggleGirosImpares=cp5.addToggle("toggleGirosImpares")
    .setLabel("Modo Killer");
    ;*/
 
-toggleTrama=cp5.addToggle("toggleTrama")
+  toggleTrama=cp5.addToggle("toggleTrama")
     .setPosition(20, 350)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(toggleTramaValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Trazo - t");
@@ -168,53 +167,53 @@ toggleTrama=cp5.addToggle("toggleTrama")
   toggleFondo=cp5.addToggle("toggleFondo")
     .setPosition(100, 350)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(toggleFondoValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Limpiar Trazo - l ");
   ;
 
-toggleRandom=cp5.addToggle("toggleRandom")
+  toggleRandom=cp5.addToggle("toggleRandom")
     .setPosition(180, 300)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(toggleRandomValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Vaiven Random - v");
   ;
 
-toggleTranslate=cp5.addToggle("toggleTranslate")
+  toggleTranslate=cp5.addToggle("toggleTranslate")
     .setPosition(20, 400)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(toggleTranslateValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Translate - m");
   ;
 
-toggleSoloTranslate=cp5.addToggle("toggleSoloTranslate")
+  toggleSoloTranslate=cp5.addToggle("toggleSoloTranslate")
     .setPosition(100, 400)
     .setSize(50, 20)
-    .setValue(true)
+    .setValue(toggleSoloTranslateValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Rotacion - r");
   ;
 
-toggleGirosConGracia=cp5.addToggle("toggleGirosConGracia")
+  toggleGirosConGracia=cp5.addToggle("toggleGirosConGracia")
     .setPosition(180, 400)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(toggleGirosConGraciaValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Giro con Gracia - c");
   ;
 
-togglePendulo=cp5.addToggle("togglePendulo")
+  togglePendulo=cp5.addToggle("togglePendulo")
     //    .setPosition(20, 450)
     .setPosition(180, 350)
     .setSize(50, 20)
-    .setValue(false)
+    .setValue(togglePenduloValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Pendulo - p");
@@ -229,18 +228,21 @@ togglePendulo=cp5.addToggle("togglePendulo")
    .setLabel("Wave");
    ;*/
 
-  //Textos sueltos
-  notaRecarga = cp5.addTextlabel("notaRecargaRecursion")
-    .setText("*recarga")
-    .setPosition(180, 25)
-    .setGroup(g1)
-    ;
+  //Estas notas de "*recarga" ya no hacen falta
+  /*  notaRecarga = cp5.addTextlabel("notaRecargaRecursion")
+   .setText("*recarga")
+   .setPosition(180, 25)
+   .setGroup(g1)
+   ;
+   
+   notaRecarga = cp5.addTextlabel("notaRegargaColores")
+   .setText("*recarga")
+   .setPosition(130, 255)
+   .setGroup(g1)
+   ;
+   */
 
-  notaRecarga = cp5.addTextlabel("notaRegargaColores")
-    .setText("*recarga")
-    .setPosition(130, 255)
-    .setGroup(g1)
-    ;
+  //Textos sueltos
 
   notaKeys = cp5.addTextlabel("notaKeysLinea1")
     .setText("1 = Guardar estado            2 = Cargar estado")
@@ -266,7 +268,7 @@ public void limitesVentanaKnob(int value) {
 }
 
 public void scalaKnob(float value) { 
-  scalaVentana = value * 0.1;
+  scalaVentana = value;
 }
 
 public void rotateWorld(int value) {
@@ -274,7 +276,7 @@ public void rotateWorld(int value) {
 }
 
 public void velocidadKnob(int value) {
-  velocidad = value * 0.010;
+  velocidad = value;
 }
 
 public void porcentajeAleatorioKnob(int value) {
@@ -345,8 +347,9 @@ void controlEvent(ControlEvent theEvent) {
 }
 
 void cambioColoresFondo(int valorColor) {
-  if (!toggleFondoValue) {
-    valorColorInit = valorColor;
-    setup();
-  }
+  //esto no hacía nada y provocaba bug, ¿por qué estaba?
+  //if (!toggleFondoValue) {
+  valorColorInit = valorColor;
+  setup();
+  //}
 }

@@ -10,13 +10,13 @@ PImage[] myImageArray;
 PVector centro = new PVector(0, -1);
 float movi=100;
 float moviR=1;
-float velocidad=10;
+public float velocidad=45;
 float rotarGeneral=2;
 int recursionLevel = 2;
 int lineFracture = 3;
 int porcentajeAleatorio = 25;
 int multiplicadorlimitesVentana = 0;
-float scalaVentana = 0.4;
+float scalaVentana = 3;
 IntList recursionLevelList;
 color[] listacolores;
 color colorDefecto;
@@ -32,7 +32,7 @@ boolean toggleScalaValue = true;
 boolean toggleGirosImparesValue = true;
 //boolean toggleKiller = false;
 boolean toggleTranslateValue = true;
-boolean toggleSoloTranslateValue = false;
+boolean toggleSoloTranslateValue = true;
 boolean toggleGirosConGraciaValue = false;
 boolean togglePenduloValue = false;
 //boolean toggleWave = false;
@@ -56,8 +56,8 @@ public int rotateWorldValue = 0;
 Toggle toggleTrama, toggleFondo, toggleRandom, toggleScala, toggleGirosImpares, toggleTranslate, toggleSoloTranslate, toggleGirosConGracia, togglePendulo;
 
 //textos sueltos
-Textlabel notaRecarga, notaKeys;
-
+Textlabel notaKeys;
+//Textlabel notaRecarga, 
 
 
 void setup() {
@@ -127,7 +127,7 @@ void draw() {
     moviR=1-2*int(random(-1, 2));
   } 
 
-  movi+=10*moviR*velocidad;
+  movi+=10*moviR*velocidad*0.010;
   if (movi< -200 + multiplicadorlimitesVentana*40 || movi> 700 - multiplicadorlimitesVentana*40) {
     moviR=-moviR;
   }
@@ -135,13 +135,9 @@ void draw() {
   popMatrix();
 
   if (toggleFondoValue) {  
-    //    pushStyle();
-    //este blendMode no hacía nada
-    //blendMode(NORMAL);
     noStroke();
     fill(colorDefecto, 20);
     rect(0, 0, width, height );
-    //  popStyle();
   }
 
   rotarGeneral += rotateWorldValue;
@@ -249,7 +245,7 @@ void keyPressed() {
       cursor();
     }
   } else if (key == 'e') {
-    toggleScala.toggle();   
+    toggleScala.toggle();
   } else if (key == 'g') {
     toggleGirosImpares.toggle();
   } else if (key == 't') {

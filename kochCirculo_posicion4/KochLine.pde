@@ -42,7 +42,7 @@ class KochLine {
     //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
     //y el propio multiplicador - Molaría botón para que sea 1 exactamente.
     if (toggleScalaValue) {
-      scale(recursionValue*scalaVentana);
+      scale(recursionValue*scalaVentana*0.1);
     }
 
 
