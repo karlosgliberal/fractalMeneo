@@ -41,7 +41,7 @@ class KochLine {
 
     //a esta scale 2 variables: recursionValue ON/OFF para que todos tengan igual o no
     //y el propio multiplicador - Molaría botón para que sea 1 exactamente.
-    if (toggleScala) {
+    if (toggleScalaValue) {
       scale(recursionValue*scalaVentana);
     }
 
@@ -50,7 +50,7 @@ class KochLine {
 
     //Hace que los niveles de recursión pares e impares roten hacía lados diferentes
     //Habría que poder activar y desactivar
-    if (toggleGirosImpares) {
+    if (toggleGirosImparesValue) {
       if (recursionValue % 2 == 0) {
         rotateNeg=-1;
       }
@@ -63,12 +63,12 @@ class KochLine {
     //Este rotate para que este antes o después del translate
     //Añadir un multiplicador random de dirección (ON/OFF y slider para elegir cada cuanto lo hace) *y lo mismo en el rotate de abajo ;)
 
-    if (toggleGirosConGracia) {
+    if (toggleGirosConGraciaValue) {
       rotate(radians(movi)*rotateNeg);
     }
     //si hacemos "movi/recursionValue" se moverán todos igual, los mismos píxeles
 
-    if (togglePendulo) {
+    if (togglePenduloValue) {
       float period = 100;
       float amplitude =100;
       pendulo = amplitude * sin(TWO_PI * frameCount / period); 
@@ -79,7 +79,7 @@ class KochLine {
 /*    if (toggleWave) {
     }*/
 
-    if (toggleTranslate) {
+    if (toggleTranslateValue) {
       translate(0, movi);
     } else {
       translate(0, movi/recursionValue);
@@ -89,7 +89,7 @@ class KochLine {
     //esto si en vez de estar aquí, está por encima del translate anterior, 
     //gira con radio "movie" y también es interesante
     if (debug == 0) {
-      if (toggleSoloTranslate) {
+      if (toggleSoloTranslateValue) {
         rotate(radians(movi-100)*rotateNeg);
       }
     }

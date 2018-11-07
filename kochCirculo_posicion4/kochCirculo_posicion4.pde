@@ -25,16 +25,16 @@ float pendulo = 0;
 boolean gui; 
 boolean save;
 
-boolean toggleTrama = false;
-boolean toggleFondo = false;
-boolean toggleRandom = true;
-boolean toggleScala = true;
-boolean toggleGirosImpares = true;
+boolean toggleTramaValue = false;
+boolean toggleFondoValue = false;
+boolean toggleRandomValue = true;
+boolean toggleScalaValue = true;
+boolean toggleGirosImparesValue = true;
 //boolean toggleKiller = false;
-boolean toggleTranslate = true;
-boolean toggleSoloTranslate = false;
-boolean toggleGirosConGracia = false;
-boolean togglePendulo = false;
+boolean toggleTranslateValue = true;
+boolean toggleSoloTranslateValue = false;
+boolean toggleGirosConGraciaValue = false;
+boolean togglePenduloValue = false;
 //boolean toggleWave = false;
 
 boolean mostrarAbout = false;
@@ -42,7 +42,7 @@ boolean mostrarAbout = false;
 PFont exoLight;
 
 ControlP5 cp5;
-CheckBox checkbox;
+//CheckBox checkbox;
 Knob rotateWorld;
 Knob velocidadKnob;
 Knob porcentajeAleatorioKnob;
@@ -52,6 +52,8 @@ RadioButton r1, r2;
 Bang horia, gorria, larrosa;
 public int debug = 0;
 public int rotateWorldValue = 0;
+
+Toggle toggleTrama, toggleFondo, toggleRandom, toggleScala, toggleGirosImpares, toggleTranslate, toggleSoloTranslate, toggleGirosConGracia, togglePendulo;
 
 //textos sueltos
 Textlabel notaRecarga, notaKeys;
@@ -108,7 +110,7 @@ void draw() {
   pushMatrix();
   translate(width/2, height/2);
 
-  if (!toggleTrama) {
+  if (!toggleTramaValue) {
     background(colorDefecto);
   }
 
@@ -121,7 +123,7 @@ void draw() {
   }
   popStyle();
 
-  if (frameCount % porcentajeAleatorio == 0 && toggleRandom) {
+  if (frameCount % porcentajeAleatorio == 0 && toggleRandomValue) {
     moviR=1-2*int(random(-1, 2));
   } 
 
@@ -132,7 +134,7 @@ void draw() {
 
   popMatrix();
 
-  if (toggleFondo) {  
+  if (toggleFondoValue) {  
     //    pushStyle();
     //este blendMode no hacía nada
     //blendMode(NORMAL);
@@ -247,25 +249,23 @@ void keyPressed() {
       cursor();
     }
   } else if (key == 'e') {
-    toggleScala =!toggleScala;
-    //intentando pasar el valor al voide de los controles para ver si se actualiza la UI, pero no :( 
-    //toggleScala(toggleScala);
+    toggleScala.toggle();   
   } else if (key == 'g') {
-    toggleGirosImpares =!toggleGirosImpares;
+    toggleGirosImpares.toggle();
   } else if (key == 't') {
-    toggleTrama =!toggleTrama;
+    toggleTrama.toggle();
   } else if (key == 'l') {
-    toggleFondo =!toggleFondo;
+    toggleFondo.toggle();
   } else if (key == 'v') {
-    toggleRandom =!toggleRandom;
+    toggleRandom.toggle();
   } else if (key == 'm') {
-    toggleTranslate =!toggleTranslate;
+    toggleTranslate.toggle();
   } else if (key == 'r') {
-    toggleSoloTranslate =!toggleSoloTranslate;
+    toggleSoloTranslate.toggle();
   } else if (key == 'c') {
-    toggleGirosConGracia =!toggleGirosConGracia;
+    toggleGirosConGracia.toggle();
   } else if (key == 'p') {
-    togglePendulo =!togglePendulo;
+    togglePendulo.toggle();
   } else if (key == 'a') {
     mostrarAbout =!mostrarAbout;
   }
@@ -282,7 +282,7 @@ void about() {
 
     int anchoCaja = 440;
     int altoCaja = 180;
-    
+
     pushMatrix();
     translate(width/2-anchoCaja/2, height/2-altoCaja/2);
 

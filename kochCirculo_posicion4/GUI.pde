@@ -129,16 +129,16 @@ void Gui() {
   ;
 
   //Toogles 
-  cp5.addToggle("toggleScala")
+toggleScala=cp5.addToggle("toggleScala")
     .setPosition(20, 300)
     .setSize(50, 20)
-    .setValue(toggleScala)
+    .setValue(toggleScalaValue)
     .setMode(ControlP5.SWITCH)
     .setGroup(g1)
     .setLabel("Escala - e");
   ;
 
-  cp5.addToggle("toggleGirosImpares")
+toggleGirosImpares=cp5.addToggle("toggleGirosImpares")
     .setPosition(100, 300)
     .setSize(50, 20)
     .setValue(true)
@@ -156,7 +156,7 @@ void Gui() {
    .setLabel("Modo Killer");
    ;*/
 
-  cp5.addToggle("toggleTrama")
+toggleTrama=cp5.addToggle("toggleTrama")
     .setPosition(20, 350)
     .setSize(50, 20)
     .setValue(false)
@@ -165,7 +165,7 @@ void Gui() {
     .setLabel("Trazo - t");
   ;
 
-  cp5.addToggle("toggleFondo")
+  toggleFondo=cp5.addToggle("toggleFondo")
     .setPosition(100, 350)
     .setSize(50, 20)
     .setValue(false)
@@ -174,7 +174,7 @@ void Gui() {
     .setLabel("Limpiar Trazo - l ");
   ;
 
-  cp5.addToggle("toggleRandom")
+toggleRandom=cp5.addToggle("toggleRandom")
     .setPosition(180, 300)
     .setSize(50, 20)
     .setValue(true)
@@ -183,7 +183,7 @@ void Gui() {
     .setLabel("Vaiven Random - v");
   ;
 
-  cp5.addToggle("toggleTranslate")
+toggleTranslate=cp5.addToggle("toggleTranslate")
     .setPosition(20, 400)
     .setSize(50, 20)
     .setValue(true)
@@ -192,7 +192,7 @@ void Gui() {
     .setLabel("Translate - m");
   ;
 
-  cp5.addToggle("toggleSoloTranslate")
+toggleSoloTranslate=cp5.addToggle("toggleSoloTranslate")
     .setPosition(100, 400)
     .setSize(50, 20)
     .setValue(true)
@@ -201,7 +201,7 @@ void Gui() {
     .setLabel("Rotacion - r");
   ;
 
-  cp5.addToggle("toggleGirosConGracia")
+toggleGirosConGracia=cp5.addToggle("toggleGirosConGracia")
     .setPosition(180, 400)
     .setSize(50, 20)
     .setValue(false)
@@ -210,7 +210,7 @@ void Gui() {
     .setLabel("Giro con Gracia - c");
   ;
 
-  cp5.addToggle("togglePendulo")
+togglePendulo=cp5.addToggle("togglePendulo")
     //    .setPosition(20, 450)
     .setPosition(180, 350)
     .setSize(50, 20)
@@ -253,7 +253,7 @@ void Gui() {
     .setPosition(10, 465)
     .setGroup(g1)
     ;
-    notaKeys = cp5.addTextlabel("notaKeysLinea3")
+  notaKeys = cp5.addTextlabel("notaKeysLinea3")
     .setText("A = About")
     .setPosition(10, 480)
     .setGroup(g1)
@@ -282,11 +282,11 @@ public void porcentajeAleatorioKnob(int value) {
 }
 
 public void toggleScala(boolean value) {
-  toggleScala = value;
+  toggleScalaValue = value;
 }
 
 public void toggleGirosImpares(boolean value) {
-  toggleGirosImpares = value;
+  toggleGirosImparesValue = value;
 }
 
 /*
@@ -295,31 +295,31 @@ public void toggleKiller(boolean value) {
  }*/
 
 public void toggleTrama(boolean value) {
-  toggleTrama = value;
+  toggleTramaValue = value;
 }
 
 public void toggleFondo(boolean value) {
-  toggleFondo = value;
+  toggleFondoValue = value;
 }
 
 public void toggleRandom(boolean value) {
-  toggleRandom = value;
+  toggleRandomValue = value;
 }
 
 public void toggleTranslate(boolean value) {
-  toggleTranslate = value;
+  toggleTranslateValue = value;
 }
 
 public void toggleSoloTranslate(boolean value) {
-  toggleSoloTranslate = value;
+  toggleSoloTranslateValue = value;
 }
 
 public void toggleGirosConGracia(boolean value) {
-  toggleGirosConGracia = value;
+  toggleGirosConGraciaValue = value;
 }
 
-public void toggleGirosPendulo(boolean value) {
-  togglePendulo = value;
+public void togglePendulo(boolean value) {
+  togglePenduloValue = value;
 }
 /*
 public void toggleWave(boolean value) {
@@ -345,7 +345,7 @@ void controlEvent(ControlEvent theEvent) {
 }
 
 void cambioColoresFondo(int valorColor) {
-  if (!toggleFondo) {
+  if (!toggleFondoValue) {
     valorColorInit = valorColor;
     setup();
   }
