@@ -22,7 +22,7 @@ color[] listacolores;
 color colorDefecto;
 int valorColorInit = 55;
 float pendulo = 0;
-boolean gui; 
+boolean gui = true; 
 boolean save;
 
 boolean toggleTramaValue = false;
@@ -226,23 +226,18 @@ void keyPressed() {
     cp5.getProperties().setFormat(ControlP5.SERIALIZED);
     cp5.loadProperties(("valoresUi.ser"));
   } else if (key == '3') {
-    if (gui ^= true) {
-      noCursor();
-      cp5.hide();
-      limpiarGUI();
-    } else {
-      cp5.show();
-      cursor();
-    }
+    gui=!gui;
+    GUI();
   } else if (key == 's') {
     if (save ^= true) {
-      noCursor();
-      cp5.hide();
-      limpiarGUI();
+      if (gui==true) {
+        cp5.hide();
+        noCursor();
+        limpiarGUI();
+      }
       salvarTGA();
-    } else {
-      cp5.show();
-      cursor();
+    } else if (gui==true) {
+      GUI();
     }
   } else if (key == 'e') {
     toggleScala.toggle();
@@ -267,6 +262,16 @@ void keyPressed() {
   }
 }
 
+void GUI() {
+  if (gui==false) {
+    noCursor();
+    cp5.hide();
+    limpiarGUI();
+  } else {
+    cp5.show();
+    cursor();
+  }
+}
 void limpiarGUI() {
   noStroke();
   fill(colorDefecto);
