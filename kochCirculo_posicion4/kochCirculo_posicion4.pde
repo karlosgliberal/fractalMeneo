@@ -227,7 +227,7 @@ void keyPressed() {
     cp5.loadProperties(("valoresUi.ser"));
   } else if (key == '3') {
     gui=!gui;
-    GUI();
+    visibilidadGUI();
   } else if (key == 's') {
     if (save ^= true) {
       if (gui==true) {
@@ -237,7 +237,7 @@ void keyPressed() {
       }
       salvarTGA();
     } else if (gui==true) {
-      GUI();
+      visibilidadGUI();
     }
   } else if (key == 'e') {
     toggleScala.toggle();
@@ -262,7 +262,7 @@ void keyPressed() {
   }
 }
 
-void GUI() {
+void visibilidadGUI() {
   if (gui==false) {
     noCursor();
     cp5.hide();
