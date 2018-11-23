@@ -45,10 +45,12 @@ class KochLine {
       scale(recursionValue*scalaVentana*0.1);
     }
 
-    if (centro2.x > 0) {      
+    if (centro2.x > 0 && ang != PI) {      
       scale(-1, 1);
     }
-
+    if (centro2.y < -1) {      
+      scale(-1, 1);
+    }
 
     pushMatrix();
 
