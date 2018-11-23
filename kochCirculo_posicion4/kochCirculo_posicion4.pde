@@ -38,6 +38,8 @@ boolean togglePenduloValue = false;
 //boolean toggleWave = false;
 
 boolean mostrarAbout = false;
+boolean simetriaX = false;
+boolean simetriaY = false;
 
 PFont exoLight;
 
@@ -264,6 +266,10 @@ void keyPressed() {
     togglePendulo.toggle();
   } else if (key == 'a') {
     mostrarAbout =!mostrarAbout;
+  } else if (key == 'x') {
+    simetriaX =!simetriaX;
+  } else if (key == 'y') {
+    simetriaY =!simetriaY;
   }
 }
 
