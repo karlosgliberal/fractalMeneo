@@ -45,6 +45,10 @@ class KochLine {
       scale(recursionValue*scalaVentana*0.1);
     }
 
+    if (centro2.x > 0) {      
+      scale(-1, 1);
+    }
+
 
     pushMatrix();
 
@@ -76,8 +80,8 @@ class KochLine {
       translate(0, movi/recursionValue*pendulo);
     }
 
-/*    if (toggleWave) {
-    }*/
+    /*    if (toggleWave) {
+     }*/
 
     if (toggleTranslateValue) {
       translate(0, movi);
