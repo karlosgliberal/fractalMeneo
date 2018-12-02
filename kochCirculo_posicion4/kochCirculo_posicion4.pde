@@ -259,6 +259,30 @@ void keyPressed() {
     togglePendulo.toggle();
   } else if (key == 'a') {
     mostrarAbout =!mostrarAbout;
+  } else if (key == ',') {
+    if (velocidad < 255) {
+      velocidad = velocidad+10;
+    }
+  } else if (key == ';') {
+    if (velocidad > 0) {
+      velocidad = velocidad-10;
+    } 
+  } else if (key == '.') {
+    if (rotateWorldValue < 30) {
+      rotateWorldValue = rotateWorldValue+1;
+    } 
+  } else if (key == ':') {
+    if (rotateWorldValue > 0) {
+      rotateWorldValue = rotateWorldValue-1;
+    } 
+  } else if (key == '-') {
+    if (scalaVentana < 30) {
+      scalaVentana = scalaVentana+1;
+    } 
+  } else if (key == '_') {
+    if (scalaVentana > 0) {
+      scalaVentana = scalaVentana-1;
+    } 
   }
 }
 
