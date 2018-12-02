@@ -261,7 +261,6 @@ void keyPressed() {
     togglePendulo.toggle();
   } else if (key == 'a') {
     mostrarAbout =!mostrarAbout;
-<<<<<<< HEAD
   } else if (key == ',') {
     if (velocidad < 255) {
       velocidad = velocidad+10;
@@ -286,12 +285,10 @@ void keyPressed() {
     if (scalaVentana > 0) {
       scalaVentana = scalaVentana-1;
     } 
-=======
   } else if (key == 'x') {
     simetriaX =!simetriaX;
   } else if (key == 'y') {
     simetriaY =!simetriaY;
->>>>>>> Simetría
   }
 }
 

@@ -2,9 +2,9 @@ void Gui() {
 
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
-    .setPosition(10, height-10-500)
+    .setPosition(10, height-40-520)
     .setWidth(270)
-    .setBackgroundHeight(500)
+    .setBackgroundHeight(520)
     .setBackgroundColor(color(5, 120))
     .setLabel("Controles")
     ;
@@ -257,6 +257,11 @@ void Gui() {
   notaKeys = cp5.addTextlabel("notaKeysLinea3")
     .setText("A = About                              X / Y = Simetria eje")
     .setPosition(10, 480)
+    .setGroup(g1)
+    ;
+  notaKeys = cp5.addTextlabel("notaKeysLinea4")
+    .setText(",   Velociadad   ;                     .   Rotar   :                    -   Escalar  _" )
+    .setPosition(10, 495)
     .setGroup(g1)
     ;
 }
