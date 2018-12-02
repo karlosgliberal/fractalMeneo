@@ -14,6 +14,14 @@ Fractales son al forma matematica que usamos para esta interactividad y potencia
 Processing [Descarga](https://processing.org/download/)
 Cp5 Processing[cp5](http://www.sojamo.de/libraries/controlP5/)
 
+## Uso
+
+La herramientra admite distintos niveles de recursión que se aplican a las imagenes que se añaden
+en la carptea data. El resto es contralado con la Gui o con las teclas asociadas. Estas keys son de
+utilidades cuando activasmos el modo sin Guy (pulsando la tecla 3) ya que se puede usar como herramienta
+de directos. Con la tecla 1 se guarda el estado de la configuración actual y con la tecla 2 se carga
+esa configuración, permientendo un preset.
+
 ### PRE
 
 Para el proyecto Meneo de Marisa Mantxola se plantea hacer una herramienta de software ad
