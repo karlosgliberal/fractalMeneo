@@ -1,18 +1,21 @@
-#Fractal Meneo Tools
+# Fractal Meneo Tools
 
 ![png](capture.png)
 
-##Resumen
+## Resumen
+
 El proyecto de colaboraación "meneo" con [Marisa mantxola](http://www.marisamantxola.com/)
 consiste en la creación de una herramienta con la que la artista Marisa puede dar interactividad
 a su material gráfico. Es un desarrollo basado en [processing](https://processing.org) donde los
 Fractales son al forma matematica que usamos para esta interactividad y potencia grafica.
 
-##Install
+## Install
+
 Processing [Descarga](https://processing.org/download/)
 Cp5 Processing[cp5](http://www.sojamo.de/libraries/controlP5/)
 
-###PRE
+### PRE
+
 Para el proyecto Meneo de Marisa Mantxola se plantea hacer una herramienta de software ad
 hoc que permita a la artista trabajar con complejas estructuras matemáticas, como son los
 fractales, sin tener que hacer una generación y composición manual, que además de necesitar
@@ -32,7 +35,8 @@ colaboración con la artista y de las necesidades que surjan en las fases previa
 proceso creativo, contemplando diferentes posibilidades como, por ejemplo, crear otro tipo de
 estructuras o la generación de audio en base a la relación de estructura visual y sonora.
 
-###POST
+### POST
+
 Para la creación de la herramienta generativa para el proyecto Meneo se empezó por investigar
 las diferentes formas de creación y generación de formas fractales, y si realmente merecía la
 pena trabajar con formas realmente fractales o si con construcciones circulares y efectos
@@ -55,7 +59,8 @@ allá de las necesidades del propio proyecto, aportando a la comunidad global un
 que seguirá creciendo y estará a disposición de cualquier artista o quien sea que quiera
 utilizarla.
 
-###BIO
+### BIO
+
 Karlos G. Liberal aka [Patxangas](https://twitter.com/patxangas) y Martin [“txo!?”](https://twitter.com/txo_elurmaluta) Etxauri se encuentran en la intersección de la
 tecnología y al arte. Siendo respectivamente un hacker venido a hacer proyectos artísticos y un
 artista venido a usar herramientas tecnológicas se juntan para complementar y compartir
