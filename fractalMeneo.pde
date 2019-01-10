@@ -60,13 +60,15 @@ Toggle toggleTrama, toggleFondo, toggleRandom, toggleScala, toggleGirosImpares, 
 //textos sueltos
 Textlabel notaKeys;
 Textlabel notaRecarga;
-
+int valorInit;
 
 void setup() {
   String[] filenames = listFileNames(sketchPath("data"));
   myImageArray = new PImage[filenames.length];
 
   int valorInit = (valorColorInit == 55 ? 0 : valorColorInit);
+  
+  
 
   exoLight=loadFont("font/Exo2.0-Light-15.vlw");
 
@@ -106,6 +108,14 @@ void setup() {
     myImageArray[i]=loadImage("data/" + filenames[i]);
   }
   Gui();
+}
+
+void movida(){
+  
+  valorInit = valorColorInit;
+  cp5.hide();
+  
+
 }
 
 void draw() {
@@ -305,7 +315,7 @@ void visibilidadGUI() {
 void limpiarGUI() {
   noStroke();
   fill(colorDefecto);
-  rect(10, height-10-500-10, 270, 500+10);
+  rect(10, height-10-520-10, 270, 520+10);
 }
 
 void about() {

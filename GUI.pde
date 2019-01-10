@@ -2,7 +2,7 @@ void Gui() {
 
   cp5 = new ControlP5(this);
   Group g1 = cp5.addGroup("g1")
-    .setPosition(10, height-40-520)
+    .setPosition(10, height-10-520)
     .setWidth(270)
     .setBackgroundHeight(520)
     .setBackgroundColor(color(5, 120))
@@ -353,6 +353,7 @@ void controlEvent(ControlEvent theEvent) {
 void cambioColoresFondo(int valorColor) {
   //esto no hacía nada y provocaba bug, ¿por qué estaba?
   //if (!toggleFondoValue) {
+  cp5.hide();
   valorColorInit = valorColor;
   setup();
   //}
